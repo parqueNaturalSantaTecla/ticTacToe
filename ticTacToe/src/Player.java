@@ -1,6 +1,4 @@
-
-
-public class Player {
+class Player {
 
 	private Token token;
 
@@ -27,4 +25,5 @@ public class Player {
 		} while (!board.isEmpty(coordinate));
 		board.move(originCoordinate, coordinate);
 	}
+
 }

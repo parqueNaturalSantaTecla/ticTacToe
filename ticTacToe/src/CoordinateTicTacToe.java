@@ -23,4 +23,5 @@ class CoordinateTicTacToe extends Coordinate {
 			this.column = console.readInt("Column: ");
 		} while (!this.isValid());
 	}
+
 }

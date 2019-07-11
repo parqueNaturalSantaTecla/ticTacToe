@@ -1,5 +1,3 @@
-
-
 class Turn {
 
 	private int value;

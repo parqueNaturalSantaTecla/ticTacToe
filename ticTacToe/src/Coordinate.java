@@ -1,31 +1,29 @@
+class Coordinate {
 
+	int row;
 
-public class Coordinate {
+	int column;
 
-	protected int row;
-
-	protected int column;
-	
-	protected Coordinate() {
+	Coordinate() {
 	}
 
-	protected Coordinate(int row, int column) {
+	Coordinate(int row, int column) {
 		this.row = row;
 		this.column = column;
 	}
-	
-	public int getRow() {
+
+	int getRow() {
 		return this.row;
 	}
-	
-	public int getColumn() {
+
+	int getColumn() {
 		return this.column;
 	}
-	
-	public void setRow(int row) {
+
+	void setRow(int row) {
 		this.row = row;
 	}
-	
+
 	public void setColumn(int column) {
 		this.column = column;
 	}

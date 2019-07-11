@@ -5,7 +5,7 @@ enum Token {
 
 	private char initial;
 
-	private Token(char initial) {
+	Token(char initial) {
 		this.initial = initial;
 	}
 

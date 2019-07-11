@@ -1,13 +1,11 @@
-
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class Console {
+class Console {
 
 	private BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
-	public String readString(String title) {
+	String readString(String title) {
 		String input = null;
 		boolean ok = false;
 		do {
@@ -21,12 +19,12 @@ public class Console {
 		} while (!ok);
 		return input;
 	}
-	
-	public String readString() {
+
+	String readString() {
 		return this.readString("");
 	}
 
-	public int readInt(String title) {
+	int readInt(String title) {
 		int input = 0;
 		boolean ok = false;
 		do {
@@ -40,7 +38,7 @@ public class Console {
 		return input;
 	}
 
-	public char readChar(String title) {
+	char readChar(String title) {
 		char charValue = ' ';
 		boolean ok = false;
 		do {
@@ -55,23 +53,24 @@ public class Console {
 		return charValue;
 	}
 
-	public void writeln() {
+	void writeln() {
 		System.out.println();
 	}
 
-	public void write(String string) {
+	void write(String string) {
 		System.out.print(string);
 	}
 
-	public void writeln(String string) {
+	void writeln(String string) {
 		System.out.println(string);
 	}
 
-	public void write(char character) {
+	void write(char character) {
 		System.out.print(character);
 	}
 
-	private void writeError(String format) {
+	void writeError(String format) {
 		System.out.println("FORMAT ERROR! " + "Enter a " + format + " formatted value.");
 	}
+
 }
