@@ -20,12 +20,4 @@ class Coordinate {
 		return this.column;
 	}
 
-	void setRow(int row) {
-		this.row = row;
-	}
-
-	public void setColumn(int column) {
-		this.column = column;
-	}
-
 }
