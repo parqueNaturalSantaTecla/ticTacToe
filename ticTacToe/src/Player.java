@@ -7,7 +7,7 @@ class Player {
 	}
 
 	void put(Board board) {
-		CoordinateTicTacToe coordinate = new CoordinateTicTacToe();
+		Coordinate coordinate = new Coordinate();
 		do {
 			coordinate.read("Enter a coordinate to put a token:");
 		} while (!board.isEmpty(coordinate));
@@ -15,8 +15,8 @@ class Player {
 	}
 
 	void move(Board board) {
-		CoordinateTicTacToe coordinate = new CoordinateTicTacToe();
-		CoordinateTicTacToe originCoordinate = new CoordinateTicTacToe();
+		Coordinate coordinate = new Coordinate();
+		Coordinate originCoordinate = new Coordinate();
 		do {
 			originCoordinate.read("Enter a coordinate to remove a token:");
 		} while (!board.isOccupied(originCoordinate, this.token));
