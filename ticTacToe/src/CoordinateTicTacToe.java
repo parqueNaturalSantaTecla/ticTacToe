@@ -1,22 +1,18 @@
-package ticTacToe;
-
-import santaTecla.utils.Console;
-
-class Coordinate extends santaTecla.utils.Coordinate {
+class CoordinateTicTacToe extends Coordinate {
 
 	static final int DIMENSION = 3;
 
-	Coordinate() {
+	CoordinateTicTacToe() {
 		super();
 	}
 
-	Coordinate(int row, int column) {
+	CoordinateTicTacToe(int row, int column) {
 		super(row, column);
 	}
 
 	boolean isValid() {
-		return this.row >= 0 && this.row < Coordinate.DIMENSION && this.column >= 0
-				&& this.column < Coordinate.DIMENSION;
+		return this.row >= 0 && this.row < CoordinateTicTacToe.DIMENSION && this.column >= 0
+				&& this.column < CoordinateTicTacToe.DIMENSION;
 	}
 
 	void read(String title) {

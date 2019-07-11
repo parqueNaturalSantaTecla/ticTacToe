@@ -1,7 +1,3 @@
-package ticTacToe;
-
-import santaTecla.utils.Console;
-
 class Board {
 	
 	final char EMPTY = '-';
@@ -10,8 +6,8 @@ class Board {
 
 	Board() {
 		this.squares = new Token[3][3];
-		for (int i = 0; i < Coordinate.DIMENSION; i++) {
-			for (int j = 0; j < Coordinate.DIMENSION; j++) {
+		for (int i = 0; i < CoordinateTicTacToe.DIMENSION; i++) {
+			for (int j = 0; j < CoordinateTicTacToe.DIMENSION; j++) {
 				this.squares[i][j] = null;
 			}
 		}
@@ -20,9 +16,9 @@ class Board {
 	void draw() {
 		Console console = new Console();
 		console.writeln("-------------");
-		for (int i = 0; i < Coordinate.DIMENSION; i++) {
+		for (int i = 0; i < CoordinateTicTacToe.DIMENSION; i++) {
 			console.write("| ");
-			for (int j = 0; j < Coordinate.DIMENSION; j++) {
+			for (int j = 0; j < CoordinateTicTacToe.DIMENSION; j++) {
 				if (this.squares[i][j] == null) {
 					console.write(this.EMPTY);
 				} else {
@@ -35,28 +31,28 @@ class Board {
 		console.writeln("-------------");
 	}
 
-	Token getToken(Coordinate coordinate) {
+	Token getToken(CoordinateTicTacToe coordinate) {
 		return this.squares[coordinate.getRow()][coordinate.getColumn()];
 	}
 
-	void put(Coordinate coordinate, Token token) {
+	void put(CoordinateTicTacToe coordinate, Token token) {
 		this.squares[coordinate.getRow()][coordinate.getColumn()] = token;
 	}
 
-	void move(Coordinate originCoordinate, Coordinate coordinate) {
+	void move(CoordinateTicTacToe originCoordinate, CoordinateTicTacToe coordinate) {
 		this.put(coordinate, this.getToken(originCoordinate));
 		this.remove(originCoordinate);
 	}
 
-	void remove(Coordinate coordinate) {
+	void remove(CoordinateTicTacToe coordinate) {
 		this.squares[coordinate.getRow()][coordinate.getColumn()] = null;
 	}
 
-	boolean isEmpty(Coordinate coordinate) {
+	boolean isEmpty(CoordinateTicTacToe coordinate) {
 		return this.squares[coordinate.getRow()][coordinate.getColumn()] == null;
 	}
 
-	boolean isOccupied(Coordinate coordinate, Token token) {
+	boolean isOccupied(CoordinateTicTacToe coordinate, Token token) {
 		return this.squares[coordinate.getRow()][coordinate.getColumn()] == token;
 	}
 

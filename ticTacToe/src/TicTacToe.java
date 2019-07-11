@@ -1,7 +1,3 @@
-package ticTacToe;
-
-import santaTecla.utils.Console;
-
 public class TicTacToe {
 
 	final int PLAYERS = 2;
@@ -22,7 +18,7 @@ public class TicTacToe {
 		Console console = new Console();
 		console.writeln("----- TIC TAC TOE -----");
 		this.board.draw();
-		for (int i = 0; i < this.PLAYERS * Coordinate.DIMENSION - 1; i++) {
+		for (int i = 0; i < this.PLAYERS * CoordinateTicTacToe.DIMENSION - 1; i++) {
 			this.players[this.turn.getValue()].put(this.board);
 			this.turn.changeTurn();
 			this.board.draw();
@@ -48,9 +44,9 @@ public class TicTacToe {
 	}
 
 	private boolean checkRows() {
-		for (int i = 0; i < Coordinate.DIMENSION; i++) {
-			if (this.checkRowCol(this.board.getToken(new Coordinate(i, 0)), this.board.getToken(new Coordinate(i, 1)),
-					this.board.getToken(new Coordinate(i, 2)))) {
+		for (int i = 0; i < CoordinateTicTacToe.DIMENSION; i++) {
+			if (this.checkRowCol(this.board.getToken(new CoordinateTicTacToe(i, 0)), this.board.getToken(new CoordinateTicTacToe(i, 1)),
+					this.board.getToken(new CoordinateTicTacToe(i, 2)))) {
 				return true;
 			}
 		}
@@ -58,9 +54,9 @@ public class TicTacToe {
 	}
 
 	private boolean checkColumns() {
-		for (int i = 0; i < Coordinate.DIMENSION; i++) {
-			if (this.checkRowCol(this.board.getToken(new Coordinate(0, i)), this.board.getToken(new Coordinate(1, i)),
-					this.board.getToken(new Coordinate(2, i)))) {
+		for (int i = 0; i < CoordinateTicTacToe.DIMENSION; i++) {
+			if (this.checkRowCol(this.board.getToken(new CoordinateTicTacToe(0, i)), this.board.getToken(new CoordinateTicTacToe(1, i)),
+					this.board.getToken(new CoordinateTicTacToe(2, i)))) {
 				return true;
 			}
 		}
@@ -68,11 +64,11 @@ public class TicTacToe {
 	}
 
 	private boolean checkDiagonals() {
-		if (this.checkRowCol(this.board.getToken(new Coordinate(0, 0)), this.board.getToken(new Coordinate(1, 1)),
-				this.board.getToken(new Coordinate(2, 2)))) {
+		if (this.checkRowCol(this.board.getToken(new CoordinateTicTacToe(0, 0)), this.board.getToken(new CoordinateTicTacToe(1, 1)),
+				this.board.getToken(new CoordinateTicTacToe(2, 2)))) {
 			return true;
-		} else if (this.checkRowCol(this.board.getToken(new Coordinate(0, 2)),
-				this.board.getToken(new Coordinate(1, 1)), this.board.getToken(new Coordinate(2, 0)))) {
+		} else if (this.checkRowCol(this.board.getToken(new CoordinateTicTacToe(0, 2)),
+				this.board.getToken(new CoordinateTicTacToe(1, 1)), this.board.getToken(new CoordinateTicTacToe(2, 0)))) {
 			return true;
 		}
 		return false;
