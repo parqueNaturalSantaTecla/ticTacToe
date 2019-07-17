@@ -12,7 +12,7 @@ public class TicTacToe {
 		for (int i = 0; i < Board.PLAYERS; i++) {
 			this.players[i] = new Player(this.board, Token.values()[i]);
 		}
-		this.turn = new Turn();
+		this.turn = new Turn(this.players);
 	}
 
 	private void play() {
@@ -20,14 +20,13 @@ public class TicTacToe {
 		console.writeln("----- TIC TAC TOE -----");
 		this.board.draw();
 		do {
-			this.turn.changeTurn();
 			if (!this.board.isCompleted()) {
-				this.players[this.turn.getValue()].put();
+				this.turn.put();
 			} else {
-				this.players[this.turn.getValue()].move();
+				this.turn.move();
 			}
 			this.board.draw();
-		} while (!this.board.isTicTacToe(this.players[this.turn.getValue()].getToken()));
+		} while (!this.board.isTicTacToe(this.turn.getToken()));
 		console.writeln("You win!!! :-)");
 	}
 
