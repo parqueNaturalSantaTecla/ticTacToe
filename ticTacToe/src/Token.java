@@ -12,5 +12,5 @@ enum Token {
 	void write() {
 		new Console().write(this.initial);
 	}
-	
+
 }

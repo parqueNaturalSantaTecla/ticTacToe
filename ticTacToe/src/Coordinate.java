@@ -2,9 +2,9 @@ class Coordinate {
 
 	static final int DIMENSION = 3;
 
-	int row;
+	private int row;
 
-	int column;
+	private int column;
 
 	Coordinate() {
 	}
@@ -14,15 +14,39 @@ class Coordinate {
 		this.column = column;
 	}
 
-	int getRow() {
-		return this.row;
+	Direction getDirection(Coordinate coordinate) {
+		if (this.inHorizontal(coordinate)) {
+			return Direction.HORIZONTAL;
+		}
+		if (this.inVertical(coordinate)) {
+			return Direction.VERTICAL;
+		}
+		if (this.inMainDiagonal() && coordinate.inMainDiagonal()) {
+			return Direction.MAIN_DIAGONAL;
+		}
+		if (this.inInverseDiagonal() && coordinate.inInverseDiagonal()) {
+			return Direction.INVERSE_DIAGONAL;
+		}
+		return null;
 	}
 
-	int getColumn() {
-		return this.column;
+	private boolean inInverseDiagonal() {
+		return this.row + this.column == Coordinate.DIMENSION - 1;
 	}
 
-	boolean isValid() {
+	private boolean inMainDiagonal() {
+		return this.row - this.column == 0;
+	}
+
+	private boolean inVertical(Coordinate coordinate) {
+		return this.column == coordinate.column;
+	}
+
+	private boolean inHorizontal(Coordinate coordinate) {
+		return this.row == coordinate.row;
+	}
+
+	private boolean isValid() {
 		return this.row >= 0 && this.row < Coordinate.DIMENSION && this.column >= 0
 				&& this.column < Coordinate.DIMENSION;
 	}
@@ -34,6 +58,14 @@ class Coordinate {
 			this.row = console.readInt("Row: ");
 			this.column = console.readInt("Column: ");
 		} while (!this.isValid());
+	}
+
+	int getRow() {
+		return this.row;
+	}
+
+	int getColumn() {
+		return this.column;
 	}
 
 }

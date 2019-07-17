@@ -26,4 +26,8 @@ class Player {
 		board.move(originCoordinate, coordinate);
 	}
 
+	Token getToken() {
+		return this.token;
+	}
+
 }
