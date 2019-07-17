@@ -1,4 +1,4 @@
-class Coordinate {
+class Coordinate extends WithConsoleModel{
 
 	static final int DIMENSION = 3;
 
@@ -53,10 +53,9 @@ class Coordinate {
 
 	void read(String title) {
 		do {
-			Console console = new Console();
-			console.writeln(title);
-			this.row = console.readInt("Row: ");
-			this.column = console.readInt("Column: ");
+			this.console.writeln(title);
+			this.row = this.console.readInt("Row: ");
+			this.column = this.console.readInt("Column: ");
 		} while (!this.isValid());
 	}
 

@@ -1,4 +1,4 @@
-class Board {
+class Board extends WithConsoleModel{
 
 	static final int PLAYERS = 2;
 
@@ -16,21 +16,20 @@ class Board {
 	}
 
 	void draw() {
-		Console console = new Console();
-		console.writeln("-------------");
+		this.console.writeln("-------------");
 		for (int i = 0; i < Coordinate.DIMENSION; i++) {
-			console.write("| ");
+			this.console.write("| ");
 			for (int j = 0; j < Coordinate.DIMENSION; j++) {
 				if (this.getToken(new Coordinate(i, j)) == null) {
-					console.write(Board.EMPTY);
+					this.console.write(Board.EMPTY);
 				} else {
 					this.getToken(new Coordinate(i, j)).write();
 				}
-				console.write(" | ");
+				this.console.write(" | ");
 			}
-			console.writeln();
+			this.console.writeln();
 		}
-		console.writeln("-------------");
+		this.console.writeln("-------------");
 	}
 
 	Token getToken(Coordinate coordinate) {
