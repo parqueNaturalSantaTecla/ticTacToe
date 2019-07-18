@@ -1,3 +1,6 @@
+package ticTacToe;
+import santaTecla.utils.WithConsoleModel;
+
 abstract class TicTacToe extends WithConsoleModel{
 
 	private Board board;

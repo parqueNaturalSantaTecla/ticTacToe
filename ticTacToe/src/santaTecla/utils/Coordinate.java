@@ -1,3 +1,4 @@
+package santaTecla.utils;
 class Coordinate extends WithConsoleModel{
 
 	protected int row;

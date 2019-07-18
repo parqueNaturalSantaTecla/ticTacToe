@@ -1,3 +1,6 @@
+package ticTacToe;
+import santaTecla.utils.Coordinate;
+
 class CoordinateTicTacToe extends Coordinate {
 
 	static final int DIMENSION = 3;

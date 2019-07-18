@@ -1,3 +1,5 @@
+package santaTecla.utils;
+
 abstract class WithConsoleModel {
 
 	protected Console console;

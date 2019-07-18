@@ -1,3 +1,4 @@
+package ticTacToe;
 import java.util.Random;
 
 class MachinePlayer extends Player{

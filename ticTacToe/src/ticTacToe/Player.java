@@ -1,3 +1,4 @@
+package ticTacToe;
 abstract class Player {
 
 	protected Board board;

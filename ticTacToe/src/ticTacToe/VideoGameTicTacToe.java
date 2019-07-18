@@ -1,3 +1,4 @@
+package ticTacToe;
 class VideoGameTicTacToe extends TicTacToe {
 
 	@Override

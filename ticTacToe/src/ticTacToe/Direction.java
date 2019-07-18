@@ -1,3 +1,4 @@
+package ticTacToe;
 enum Direction {
 
 	VERTICAL,

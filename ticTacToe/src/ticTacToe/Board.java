@@ -1,3 +1,6 @@
+package ticTacToe;
+import santaTecla.utils.WithConsoleModel;
+
 class Board extends WithConsoleModel{
 
 	static final int PLAYERS = 2;
