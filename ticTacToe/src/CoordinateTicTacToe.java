@@ -1,4 +1,4 @@
-public class CoordinateTicTacToe extends Coordinate {
+class CoordinateTicTacToe extends Coordinate {
 
 	static final int DIMENSION = 3;
 
