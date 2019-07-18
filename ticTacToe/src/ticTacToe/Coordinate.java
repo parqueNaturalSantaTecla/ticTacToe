@@ -1,19 +1,18 @@
 package ticTacToe;
-import santaTecla.utils.Coordinate;
 
-class CoordinateTicTacToe extends Coordinate {
+class Coordinate extends santaTecla.utils.Coordinate {
 
 	static final int DIMENSION = 3;
 
-	CoordinateTicTacToe() {
+	Coordinate() {
 		super();
 	}
 
-	CoordinateTicTacToe(int row, int column) {
+	Coordinate(int row, int column) {
 		super(row, column);
 	}
 
-	Direction getDirection(CoordinateTicTacToe coordinate) {
+	Direction getDirection(Coordinate coordinate) {
 		if (this.inHorizontal(coordinate)) {
 			return Direction.HORIZONTAL;
 		}
@@ -30,24 +29,24 @@ class CoordinateTicTacToe extends Coordinate {
 	}
 
 	private boolean inInverseDiagonal() {
-		return this.row + this.column == CoordinateTicTacToe.DIMENSION - 1;
+		return this.row + this.column == Coordinate.DIMENSION - 1;
 	}
 
 	private boolean inMainDiagonal() {
 		return this.row - this.column == 0;
 	}
 
-	private boolean inVertical(CoordinateTicTacToe coordinate) {
+	private boolean inVertical(Coordinate coordinate) {
 		return this.column == coordinate.column;
 	}
 
-	private boolean inHorizontal(CoordinateTicTacToe coordinate) {
+	private boolean inHorizontal(Coordinate coordinate) {
 		return this.row == coordinate.row;
 	}
 
 	private boolean isValid() {
-		return this.row >= 0 && this.row < CoordinateTicTacToe.DIMENSION && this.column >= 0
-				&& this.column < CoordinateTicTacToe.DIMENSION;
+		return this.row >= 0 && this.row < Coordinate.DIMENSION && this.column >= 0
+				&& this.column < Coordinate.DIMENSION;
 	}
 
 	void read(String title) {

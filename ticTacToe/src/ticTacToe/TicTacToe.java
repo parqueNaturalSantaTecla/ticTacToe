@@ -11,7 +11,7 @@ abstract class TicTacToe extends WithConsoleModel{
 
 	TicTacToe() {
 		this.board = new Board();
-		this.players = new Player[CoordinateTicTacToe.DIMENSION];
+		this.players = new Player[Coordinate.DIMENSION];
 		this.createPlayers(this.board);
 		this.turn = new Turn(this.players);
 	}

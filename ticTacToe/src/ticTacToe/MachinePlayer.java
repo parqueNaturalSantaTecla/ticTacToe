@@ -8,23 +8,23 @@ class MachinePlayer extends Player{
 	}
 	
 	void put() {
-		CoordinateTicTacToe coordinate = new CoordinateTicTacToe();
+		Coordinate coordinate = new Coordinate();
 		do {
 			coordinate = this.createCoordinate();
 		} while (!this.board.isEmpty(coordinate));
 		this.board.put(coordinate, this.token);
 	}
 	
-	private CoordinateTicTacToe createCoordinate() {
+	private Coordinate createCoordinate() {
 		Random random = new Random(System.currentTimeMillis());
-		int row = random.nextInt(CoordinateTicTacToe.DIMENSION);
-		int column = random.nextInt(CoordinateTicTacToe.DIMENSION);
-		return new CoordinateTicTacToe(row, column);
+		int row = random.nextInt(Coordinate.DIMENSION);
+		int column = random.nextInt(Coordinate.DIMENSION);
+		return new Coordinate(row, column);
 	}
 
 	void move() {
-		CoordinateTicTacToe coordinate = new CoordinateTicTacToe();
-		CoordinateTicTacToe originCoordinate = new CoordinateTicTacToe();
+		Coordinate coordinate = new Coordinate();
+		Coordinate originCoordinate = new Coordinate();
 		do {
 			originCoordinate = this.createCoordinate();
 		} while (!this.board.isOccupied(originCoordinate, this.token));
