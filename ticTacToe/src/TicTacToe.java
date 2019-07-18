@@ -1,4 +1,4 @@
-public class TicTacToe extends WithConsoleModel{
+abstract class TicTacToe extends WithConsoleModel{
 
 	private Board board;
 
@@ -8,14 +8,13 @@ public class TicTacToe extends WithConsoleModel{
 
 	TicTacToe() {
 		this.board = new Board();
-		this.players = new Player[Board.PLAYERS];
-		for (int i = 0; i < Board.PLAYERS; i++) {
-			this.players[i] = new Player(this.board, Token.values()[i]);
-		}
+		this.players = this.createPlayers(this.board);
 		this.turn = new Turn(this.players);
 	}
 
-	private void play() {
+	protected abstract Player[] createPlayers(Board board);
+
+	protected void play() {
 		this.console.writeln("----- TIC TAC TOE -----");
 		this.board.draw();
 		do {
@@ -27,10 +26,6 @@ public class TicTacToe extends WithConsoleModel{
 			this.board.draw();
 		} while (!this.board.isTicTacToe(this.turn.getToken()));
 		this.console.writeln("You win!!! :-)");
-	}
-
-	public static void main(String[] args) {
-		new TicTacToe().play();
 	}
 
 }
