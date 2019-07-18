@@ -1,4 +1,5 @@
 package ticTacToe;
+
 class Turn {
 
 	private int value;

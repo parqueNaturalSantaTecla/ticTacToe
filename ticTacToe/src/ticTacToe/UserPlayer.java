@@ -1,5 +1,6 @@
 package ticTacToe;
-class UserPlayer extends Player{
+
+class UserPlayer extends Player {
 
 	UserPlayer(Board board, Token token) {
 		super(board, token);

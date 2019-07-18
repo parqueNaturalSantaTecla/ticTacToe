@@ -1,4 +1,5 @@
 package ticTacToe;
+
 class BoardTicTacToe extends TicTacToe {
 
 	@Override

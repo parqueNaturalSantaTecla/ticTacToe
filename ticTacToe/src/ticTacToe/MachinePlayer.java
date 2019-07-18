@@ -1,12 +1,13 @@
 package ticTacToe;
+
 import java.util.Random;
 
-class MachinePlayer extends Player{
+class MachinePlayer extends Player {
 
 	MachinePlayer(Board board, Token token) {
 		super(board, token);
 	}
-	
+
 	void put() {
 		Coordinate coordinate = new Coordinate();
 		do {
@@ -14,7 +15,7 @@ class MachinePlayer extends Player{
 		} while (!this.board.isEmpty(coordinate));
 		this.board.put(coordinate, this.token);
 	}
-	
+
 	private Coordinate createCoordinate() {
 		Random random = new Random(System.currentTimeMillis());
 		int row = random.nextInt(Coordinate.DIMENSION);
