@@ -1,23 +1,24 @@
 package santaTecla.utils;
-class Coordinate extends WithConsoleModel{
+
+public class Coordinate extends WithConsoleModel{
 
 	protected int row;
 
 	protected int column;
 
-	Coordinate() {
+	public Coordinate() {
 	}
 
-	Coordinate(int row, int column) {
+	public Coordinate(int row, int column) {
 		this.row = row;
 		this.column = column;
 	}
 
-	int getRow() {
+	public int getRow() {
 		return this.row;
 	}
 
-	int getColumn() {
+	public int getColumn() {
 		return this.column;
 	}
 

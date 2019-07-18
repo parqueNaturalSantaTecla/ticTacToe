@@ -37,11 +37,11 @@ class CoordinateTicTacToe extends Coordinate {
 		return this.row - this.column == 0;
 	}
 
-	private boolean inVertical(Coordinate coordinate) {
+	private boolean inVertical(CoordinateTicTacToe coordinate) {
 		return this.column == coordinate.column;
 	}
 
-	private boolean inHorizontal(Coordinate coordinate) {
+	private boolean inHorizontal(CoordinateTicTacToe coordinate) {
 		return this.row == coordinate.row;
 	}
 

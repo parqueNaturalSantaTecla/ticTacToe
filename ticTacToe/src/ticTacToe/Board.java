@@ -1,4 +1,5 @@
 package ticTacToe;
+
 import santaTecla.utils.WithConsoleModel;
 
 class Board extends WithConsoleModel{
