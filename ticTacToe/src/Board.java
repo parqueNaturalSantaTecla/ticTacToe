@@ -2,12 +2,12 @@ class Board extends WithConsoleModel{
 
 	static final char EMPTY = '-';
 
-	private Coordinate[][] coordinates;
+	private TicTacToeCoordinate[][] coordinates;
 
 	Board() {
-		this.coordinates = new Coordinate[2][3];
+		this.coordinates = new TicTacToeCoordinate[2][3];
 		for (int i = 0; i < Turn.PLAYERS; i++) {
-			for (int j = 0; j < Coordinate.DIMENSION; j++) {
+			for (int j = 0; j < TicTacToeCoordinate.DIMENSION; j++) {
 				this.coordinates[i][j] = null;
 			}
 		}
@@ -15,13 +15,13 @@ class Board extends WithConsoleModel{
 
 	void draw() {
 		WithConsoleModel.console.writeln("-------------");
-		for (int i = 0; i < Coordinate.DIMENSION; i++) {
+		for (int i = 0; i < TicTacToeCoordinate.DIMENSION; i++) {
 			WithConsoleModel.console.write("| ");
-			for (int j = 0; j < Coordinate.DIMENSION; j++) {
-				if (this.getToken(new Coordinate(i, j)) == null) {
+			for (int j = 0; j < TicTacToeCoordinate.DIMENSION; j++) {
+				if (this.getToken(new TicTacToeCoordinate(i, j)) == null) {
 					WithConsoleModel.console.write(Board.EMPTY);
 				} else {
-					this.getToken(new Coordinate(i, j)).write();
+					this.getToken(new TicTacToeCoordinate(i, j)).write();
 				}
 				WithConsoleModel.console.write(" | ");
 			}
@@ -30,9 +30,9 @@ class Board extends WithConsoleModel{
 		WithConsoleModel.console.writeln("-------------");
 	}
 
-	Token getToken(Coordinate coordinate) {
+	Token getToken(TicTacToeCoordinate coordinate) {
 		for (int i = 0; i < Turn.PLAYERS; i++) {
-			for (int j = 0; j < Coordinate.DIMENSION; j++) {
+			for (int j = 0; j < TicTacToeCoordinate.DIMENSION; j++) {
 				if (this.coordinates[i][j] != null && this.coordinates[i][j].getRow() == coordinate.getRow()
 						&& this.coordinates[i][j].getColumn() == coordinate.getColumn()) {
 					return Token.values()[i];
@@ -42,13 +42,13 @@ class Board extends WithConsoleModel{
 		return null;
 	}
 
-	void move(Coordinate originCoordinate, Coordinate coordinate) {
+	void move(TicTacToeCoordinate originCoordinate, TicTacToeCoordinate coordinate) {
 		Token token = this.getToken(originCoordinate);
 		this.remove(originCoordinate);
 		this.put(coordinate, token);
 	}
 
-	void put(Coordinate coordinate, Token token) {
+	void put(TicTacToeCoordinate coordinate, Token token) {
 		int i = 0;
 		while (this.coordinates[token.ordinal()][i] != null) {
 			i++;
@@ -56,9 +56,9 @@ class Board extends WithConsoleModel{
 		this.coordinates[token.ordinal()][i] = coordinate;
 	}
 
-	private void remove(Coordinate coordinate) {
+	private void remove(TicTacToeCoordinate coordinate) {
 		for (int i = 0; i < Turn.PLAYERS; i++) {
-			for (int j = 0; j < Coordinate.DIMENSION; j++) {
+			for (int j = 0; j < TicTacToeCoordinate.DIMENSION; j++) {
 				if (this.coordinates[i][j] != null && this.coordinates[i][j].getRow() == coordinate.getRow()
 						&& this.coordinates[i][j].getColumn() == coordinate.getColumn()) {
 					this.coordinates[i][j] = null;
@@ -68,8 +68,8 @@ class Board extends WithConsoleModel{
 	}
 
 	boolean isTicTacToe(Token token) {
-		Coordinate[] coordinates = this.coordinates[token.ordinal()];
-		if (this.numberOfCoordinates(coordinates) < Coordinate.DIMENSION) {
+		TicTacToeCoordinate[] coordinates = this.coordinates[token.ordinal()];
+		if (this.numberOfCoordinates(coordinates) < TicTacToeCoordinate.DIMENSION) {
 			return false;
 		}
 		Direction direction = coordinates[0].getDirection(coordinates[1]);
@@ -79,7 +79,7 @@ class Board extends WithConsoleModel{
 		return direction == coordinates[1].getDirection(coordinates[2]);
 	}
 
-	private int numberOfCoordinates(Coordinate[] coordinates) {
+	private int numberOfCoordinates(TicTacToeCoordinate[] coordinates) {
 		int count = 0;
 		for (int i = 0; i < coordinates.length; i++) {
 			if (coordinates[i] != null) {
@@ -91,7 +91,7 @@ class Board extends WithConsoleModel{
 
 	boolean isCompleted() {
 		for (int i = 0; i < Turn.PLAYERS; i++) {
-			for (int j = 0; j < Coordinate.DIMENSION; j++) {
+			for (int j = 0; j < TicTacToeCoordinate.DIMENSION; j++) {
 				if (this.coordinates[i][j] == null) {
 					return false;
 				}
@@ -100,11 +100,11 @@ class Board extends WithConsoleModel{
 		return true;
 	}
 
-	boolean isEmpty(Coordinate coordinate) {
+	boolean isEmpty(TicTacToeCoordinate coordinate) {
 		return this.isOccupied(coordinate, null);
 	}
 
-	boolean isOccupied(Coordinate coordinate, Token token) {
+	boolean isOccupied(TicTacToeCoordinate coordinate, Token token) {
 		return this.getToken(coordinate) == token;
 	}
 

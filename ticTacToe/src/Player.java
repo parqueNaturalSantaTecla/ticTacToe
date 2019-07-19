@@ -10,7 +10,7 @@ class Player {
 	}
 
 	void put() {
-		Coordinate coordinate = new Coordinate();
+		TicTacToeCoordinate coordinate = new TicTacToeCoordinate();
 		Error error;
 		do {
 			error = null;
@@ -24,7 +24,7 @@ class Player {
 	}
 
 	void move() {
-		Coordinate originCoordinate = new Coordinate();
+		TicTacToeCoordinate originCoordinate = new TicTacToeCoordinate();
 		Error error;
 		do {
 			error = null;
@@ -34,7 +34,7 @@ class Player {
 				error.write();
 			}
 		} while (error != null);
-		Coordinate targetCoordinate = new Coordinate();
+		TicTacToeCoordinate targetCoordinate = new TicTacToeCoordinate();
 		do {
 			error = null;
 			targetCoordinate.read("Enter a coordinate to put a token:");
