@@ -1,5 +1,8 @@
 package ticTacToe;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+
 import santaTecla.utils.WithConsoleModel;
 
 class Board extends WithConsoleModel{
@@ -93,6 +96,24 @@ class Board extends WithConsoleModel{
 			}
 		}
 		return count;
+	}
+
+	void load(BufferedReader bufferedReader) {
+		for (int i = 0; i < Coordinate.DIMENSION; i++) {
+			try {
+				String[] line = bufferedReader.readLine().split(".");
+				for (int j = 0; j < Coordinate.DIMENSION; j++) {
+					char character = line[j].charAt(0);
+					if (character != this.EMPTY) {
+						this.put(new Coordinate(i, j), Token.getInstance(character));
+					} else {
+						this.put(new Coordinate(i, j), null);
+					}				
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	boolean isCompleted() {
