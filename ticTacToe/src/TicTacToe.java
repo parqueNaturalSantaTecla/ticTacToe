@@ -10,7 +10,7 @@ class TicTacToe {
 		this.board = new Board();
 		this.players = new Player[Turn.PLAYERS];
 		for (int i = 0; i < Turn.PLAYERS; i++) {
-			this.players[i] = new Player(Token.values()[i]);
+			this.players[i] = new Player(Token.values()[i], this.board);
 		}
 		this.turn = new Turn();
 	}
@@ -21,9 +21,9 @@ class TicTacToe {
 		this.board.draw();
 		do {
 			if (!this.board.isCompleted()) {
-				this.players[this.turn.getValue()].put(this.board);
+				this.players[this.turn.getValue()].put();
 			} else {
-				this.players[this.turn.getValue()].move(this.board);
+				this.players[this.turn.getValue()].move();
 			}
 			this.turn.change();
 			this.board.draw();

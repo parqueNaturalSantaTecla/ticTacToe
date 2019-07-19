@@ -1,12 +1,15 @@
 class Player {
 
 	private Token token;
+	
+	private Board board;
 
-	Player(Token token) {
+	Player(Token token, Board board) {
 		this.token = token;
+		this.board = board;
 	}
 
-	void put(Board board) {
+	void put() {
 		Coordinate coordinate = new Coordinate();
 		Error error;
 		do {
@@ -20,7 +23,7 @@ class Player {
 		board.put(coordinate, this.token);
 	}
 
-	void move(Board board) {
+	void move() {
 		Coordinate originCoordinate = new Coordinate();
 		Error error;
 		do {
