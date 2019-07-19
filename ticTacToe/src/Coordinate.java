@@ -46,11 +46,6 @@ class Coordinate {
 		return this.row == coordinate.row;
 	}
 
-	private boolean isValid() {
-		return this.row >= 0 && this.row < Coordinate.DIMENSION && this.column >= 0
-				&& this.column < Coordinate.DIMENSION;
-	}
-
 	void read(String title) {
 		do {
 			Console console = new Console();
@@ -58,6 +53,11 @@ class Coordinate {
 			this.row = console.readInt("Row: ");
 			this.column = console.readInt("Column: ");
 		} while (!this.isValid());
+	}
+
+	private boolean isValid() {
+		return this.row >= 0 && this.row < Coordinate.DIMENSION && this.column >= 0
+				&& this.column < Coordinate.DIMENSION;
 	}
 
 	int getRow() {

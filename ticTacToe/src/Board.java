@@ -1,14 +1,12 @@
 class Board {
 
-	static final int PLAYERS = 2;
-
 	static final char EMPTY = '-';
 
 	private Coordinate[][] coordinates;
 
 	Board() {
 		this.coordinates = new Coordinate[2][3];
-		for (int i = 0; i < Board.PLAYERS; i++) {
+		for (int i = 0; i < Turn.PLAYERS; i++) {
 			for (int j = 0; j < Coordinate.DIMENSION; j++) {
 				this.coordinates[i][j] = null;
 			}
@@ -34,7 +32,7 @@ class Board {
 	}
 
 	Token getToken(Coordinate coordinate) {
-		for (int i = 0; i < Board.PLAYERS; i++) {
+		for (int i = 0; i < Turn.PLAYERS; i++) {
 			for (int j = 0; j < Coordinate.DIMENSION; j++) {
 				if (this.coordinates[i][j] != null && this.coordinates[i][j].getRow() == coordinate.getRow()
 						&& this.coordinates[i][j].getColumn() == coordinate.getColumn()) {
@@ -60,7 +58,7 @@ class Board {
 	}
 
 	private void remove(Coordinate coordinate) {
-		for (int i = 0; i < Board.PLAYERS; i++) {
+		for (int i = 0; i < Turn.PLAYERS; i++) {
 			for (int j = 0; j < Coordinate.DIMENSION; j++) {
 				if (this.coordinates[i][j] != null && this.coordinates[i][j].getRow() == coordinate.getRow()
 						&& this.coordinates[i][j].getColumn() == coordinate.getColumn()) {
@@ -93,7 +91,7 @@ class Board {
 	}
 
 	boolean isCompleted() {
-		for (int i = 0; i < Board.PLAYERS; i++) {
+		for (int i = 0; i < Turn.PLAYERS; i++) {
 			for (int j = 0; j < Coordinate.DIMENSION; j++) {
 				if (this.coordinates[i][j] == null) {
 					return false;
