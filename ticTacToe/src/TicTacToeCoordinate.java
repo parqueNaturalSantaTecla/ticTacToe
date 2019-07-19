@@ -1,3 +1,5 @@
+import java.util.Random;
+
 class TicTacToeCoordinate extends Coordinate {
 
 	static final int DIMENSION = 3;
@@ -34,6 +36,12 @@ class TicTacToeCoordinate extends Coordinate {
 	private boolean isValid() {
 		return this.row >= 0 && this.row < TicTacToeCoordinate.DIMENSION && this.column >= 0
 				&& this.column < TicTacToeCoordinate.DIMENSION;
+	}
+
+	void random() {
+		Random random = new Random(System.currentTimeMillis());
+		this.row = random.nextInt(TicTacToeCoordinate.DIMENSION);
+		this.column = random.nextInt(TicTacToeCoordinate.DIMENSION);
 	}
 
 }
