@@ -1,4 +1,4 @@
-class TicTacToe {
+class TicTacToe extends WithConsoleModel{
 
 	private Board board;
 
@@ -16,8 +16,7 @@ class TicTacToe {
 	}
 
 	private void play() {
-		Console console = new Console();
-		console.writeln("----- TIC TAC TOE -----");
+		WithConsoleModel.console.writeln("----- TIC TAC TOE -----");
 		this.board.draw();
 		do {
 			if (!this.board.isCompleted()) {
@@ -29,7 +28,7 @@ class TicTacToe {
 			this.board.draw();
 		} while (!this.board.isTicTacToe(this.turn.getOtherPlayer().getToken()));
 		this.turn.getOtherPlayer().getToken().write();
-		console.writeln(" Player: You win!!! :-)");
+		WithConsoleModel.console.writeln(" Player: You win!!! :-)");
 	}
 
 	public static void main(String[] args) {
