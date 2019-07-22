@@ -28,8 +28,7 @@ class TicTacToe {
 			this.turn.change();
 			this.board.draw();
 		} while (!this.board.isTicTacToe(this.players[this.turn.getOtherValue()].getToken()));
-		this.players[this.turn.getOtherValue()].getToken().write();
-		console.writeln(" Player: You win!!! :-)");
+		this.players[this.turn.getOtherValue()].writeWin();
 	}
 
 	public static void main(String[] args) {
