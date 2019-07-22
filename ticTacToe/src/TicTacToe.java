@@ -27,8 +27,7 @@ class TicTacToe extends WithConsoleModel{
 			this.turn.change();
 			this.board.draw();
 		} while (!this.board.isTicTacToe(this.turn.getOtherPlayer().getToken()));
-		this.turn.getOtherPlayer().getToken().write();
-		WithConsoleModel.console.writeln(" Player: You win!!! :-)");
+		this.turn.getOtherPlayer().writeWin();
 	}
 
 	public static void main(String[] args) {

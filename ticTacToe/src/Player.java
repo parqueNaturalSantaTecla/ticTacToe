@@ -1,4 +1,4 @@
-class Player {
+class Player extends WithConsoleModel {
 
 	private Token token;
 	
@@ -47,6 +47,11 @@ class Player {
 			}
 		} while (error != null);
 		board.move(originCoordinate, targetCoordinate);
+	}
+	
+	void writeWin() {
+		this.token.write();
+		WithConsoleModel.console.writeln(" Player: You win!!! :-)");
 	}
 
 	Token getToken() {
