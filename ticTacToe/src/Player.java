@@ -1,4 +1,4 @@
-abstract class Player {
+abstract class Player extends WithConsoleModel{
 
 	protected Token token;
 	
@@ -15,6 +15,11 @@ abstract class Player {
 
 	Token getToken() {
 		return this.token;
+	}
+	
+	void writeWin() {
+		this.token.write();
+		WithConsoleModel.console.writeln(" Player: You win!!! :-)");
 	}
 
 }
