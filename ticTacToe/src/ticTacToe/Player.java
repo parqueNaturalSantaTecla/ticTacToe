@@ -1,3 +1,7 @@
+package ticTacToe;
+
+import santaTecla.utils.WithConsoleModel;
+
 abstract class Player extends WithConsoleModel{
 
 	protected Token token;

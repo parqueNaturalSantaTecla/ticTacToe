@@ -1,4 +1,6 @@
-enum Direction {
+package santaTecla.utils;
+
+public enum Direction {
 
 	VERTICAL,
 	HORIZONTAL,

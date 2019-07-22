@@ -1,3 +1,5 @@
+package ticTacToe;
+
 class Turn {
 
 	static final int PLAYERS = 2;
