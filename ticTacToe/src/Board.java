@@ -1,4 +1,6 @@
 class Board {
+	
+	static final String[] TOKENS = {"O", "X"};
 
 	static final char EMPTY = '-';
 
@@ -22,7 +24,7 @@ class Board {
 				if (this.getToken(new Coordinate(i, j)) == null) {
 					console.write(Board.EMPTY);
 				} else {
-					this.getToken(new Coordinate(i, j)).write();
+					console.write(this.getToken(new Coordinate(i, j)));
 				}
 				console.write(" | ");
 			}
@@ -31,30 +33,39 @@ class Board {
 		console.writeln("-------------");
 	}
 
-	Token getToken(Coordinate coordinate) {
+	String getToken(Coordinate coordinate) {
 		for (int i = 0; i < Turn.PLAYERS; i++) {
 			for (int j = 0; j < Coordinate.DIMENSION; j++) {
 				if (this.coordinates[i][j] != null && this.coordinates[i][j].getRow() == coordinate.getRow()
 						&& this.coordinates[i][j].getColumn() == coordinate.getColumn()) {
-					return Token.values()[i];
+					return Board.TOKENS[i];
 				}
 			}
 		}
 		return null;
 	}
 
+	private int getOrdinal(String token) {
+		for (int i = 0; i < Board.TOKENS.length; i++) {
+			if (token == Board.TOKENS[i]) {
+				return i;
+			}			
+		}
+		return -1;
+	}
+
 	void move(Coordinate originCoordinate, Coordinate coordinate) {
-		Token token = this.getToken(originCoordinate);
+		String token = this.getToken(originCoordinate);
 		this.remove(originCoordinate);
 		this.put(coordinate, token);
 	}
 
-	void put(Coordinate coordinate, Token token) {
+	void put(Coordinate coordinate, String token) {
 		int i = 0;
-		while (this.coordinates[token.ordinal()][i] != null) {
+		while (this.coordinates[this.getOrdinal(token)][i] != null) {
 			i++;
 		}
-		this.coordinates[token.ordinal()][i] = coordinate;
+		this.coordinates[this.getOrdinal(token)][i] = coordinate;
 	}
 
 	private void remove(Coordinate coordinate) {
@@ -68,12 +79,12 @@ class Board {
 		}
 	}
 
-	boolean isTicTacToe(Token token) {
-		Coordinate[] coordinates = this.coordinates[token.ordinal()];
+	boolean isTicTacToe(String token) {
+		Coordinate[] coordinates = this.coordinates[this.getOrdinal(token)];
 		if (this.numberOfCoordinates(coordinates) < Coordinate.DIMENSION) {
 			return false;
 		}
-		Direction direction = coordinates[0].getDirection(coordinates[1]);
+		String direction = coordinates[0].getDirection(coordinates[1]);
 		if (direction == null) {
 			return false;
 		}
@@ -105,7 +116,7 @@ class Board {
 		return this.isOccupied(coordinate, null);
 	}
 
-	boolean isOccupied(Coordinate coordinate, Token token) {
+	boolean isOccupied(Coordinate coordinate, String token) {
 		return this.getToken(coordinate) == token;
 	}
 

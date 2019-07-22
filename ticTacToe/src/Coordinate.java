@@ -1,4 +1,6 @@
 class Coordinate {
+	
+	static final String[] DIRECTION = {"VERTICAL", "HORIZONTAL", "MAIN_DIAGONAL", "INVERSE_DIAGONAL"};
 
 	static final int DIMENSION = 3;
 
@@ -14,18 +16,18 @@ class Coordinate {
 		this.column = column;
 	}
 
-	Direction getDirection(Coordinate coordinate) {
+	String getDirection(Coordinate coordinate) {
 		if (this.inHorizontal(coordinate)) {
-			return Direction.HORIZONTAL;
+			return Coordinate.DIRECTION[0];
 		}
 		if (this.inVertical(coordinate)) {
-			return Direction.VERTICAL;
+			return Coordinate.DIRECTION[1];
 		}
 		if (this.inMainDiagonal() && coordinate.inMainDiagonal()) {
-			return Direction.MAIN_DIAGONAL;
+			return Coordinate.DIRECTION[2];
 		}
 		if (this.inInverseDiagonal() && coordinate.inInverseDiagonal()) {
-			return Direction.INVERSE_DIAGONAL;
+			return Coordinate.DIRECTION[3];
 		}
 		return null;
 	}
