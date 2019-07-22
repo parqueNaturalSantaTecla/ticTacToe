@@ -1,6 +1,6 @@
 class Player {
 	
-	static final String[] ERROR = {"The square is not empty", "There is not a token of yours", "The origin and target squares are the same"};
+	final String[] ERROR = {"The square is not empty", "There is not a token of yours", "The origin and target squares are the same"};
 
 	private String token;
 
@@ -15,7 +15,7 @@ class Player {
 			error = null;
 			coordinate.read("Enter a coordinate to put a token:");
 			if (!board.isEmpty(coordinate)) {
-				error = Player.ERROR[0];
+				error = this.ERROR[0];
 				new Console().write(error);
 			}
 		} while (error != null);
@@ -30,7 +30,7 @@ class Player {
 			error = null;
 			originCoordinate.read("Enter a coordinate to remove a token:");
 			if (!board.isOccupied(originCoordinate, this.token)) {
-				error = Player.ERROR[1];
+				error = this.ERROR[1];
 				console.write(error);
 			}
 		} while (error != null);
@@ -39,10 +39,10 @@ class Player {
 			error = null;
 			targetCoordinate.read("Enter a coordinate to put a token:");
 			if (originCoordinate.equals(targetCoordinate)) {
-				error = Player.ERROR[2];
+				error = this.ERROR[2];
 				console.write(error);
 			} else if (!board.isEmpty(targetCoordinate)) {
-				error = Player.ERROR[0];
+				error = this.ERROR[0];
 				console.write(error);
 			}
 		} while (error != null);

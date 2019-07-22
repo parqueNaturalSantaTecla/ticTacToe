@@ -1,8 +1,8 @@
 class Coordinate {
 	
-	static final String[] DIRECTION = {"VERTICAL", "HORIZONTAL", "MAIN_DIAGONAL", "INVERSE_DIAGONAL"};
+	final String[] DIRECTION = {"VERTICAL", "HORIZONTAL", "MAIN_DIAGONAL", "INVERSE_DIAGONAL"};
 
-	static final int DIMENSION = 3;
+	final int DIMENSION = 3;
 
 	private int row;
 
@@ -18,22 +18,22 @@ class Coordinate {
 
 	String getDirection(Coordinate coordinate) {
 		if (this.inHorizontal(coordinate)) {
-			return Coordinate.DIRECTION[0];
+			return this.DIRECTION[0];
 		}
 		if (this.inVertical(coordinate)) {
-			return Coordinate.DIRECTION[1];
+			return this.DIRECTION[1];
 		}
 		if (this.inMainDiagonal() && coordinate.inMainDiagonal()) {
-			return Coordinate.DIRECTION[2];
+			return this.DIRECTION[2];
 		}
 		if (this.inInverseDiagonal() && coordinate.inInverseDiagonal()) {
-			return Coordinate.DIRECTION[3];
+			return this.DIRECTION[3];
 		}
 		return null;
 	}
 
 	private boolean inInverseDiagonal() {
-		return this.row + this.column == Coordinate.DIMENSION - 1;
+		return this.row + this.column == this.DIMENSION - 1;
 	}
 
 	private boolean inMainDiagonal() {
@@ -58,8 +58,8 @@ class Coordinate {
 	}
 
 	private boolean isValid() {
-		return this.row >= 0 && this.row < Coordinate.DIMENSION && this.column >= 0
-				&& this.column < Coordinate.DIMENSION;
+		return this.row >= 0 && this.row < this.DIMENSION && this.column >= 0
+				&& this.column < this.DIMENSION;
 	}
 
 	int getRow() {
