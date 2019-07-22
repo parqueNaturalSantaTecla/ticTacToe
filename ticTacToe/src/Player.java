@@ -45,6 +45,11 @@ class Player {
 		} while (error != null);
 		board.move(originCoordinate, targetCoordinate);
 	}
+	
+	void writeWin() {
+		this.token.write();
+		new Console().writeln(" Player: You win!!! :-)");
+	}
 
 	Token getToken() {
 		return this.token;
