@@ -32,5 +32,10 @@ class Player {
 	Token getToken() {
 		return this.token;
 	}
+	
+	void writeWin() {
+		this.token.write();
+		WithConsoleModel.console.writeln(" Player: You win!!! :-)");
+	}
 
 }

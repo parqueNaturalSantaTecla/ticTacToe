@@ -1,5 +1,7 @@
 class Turn {
 
+	static final int PLAYERS = 2;
+
 	private int value;
 
 	private Player[] players;
@@ -9,22 +11,20 @@ class Turn {
 		this.players = players;
 	}
 
-	void put() {
-		this.changeTurn();
-		this.players[value].put();
+	void change() {
+		this.value = this.getOtherValue();
 	}
 
-	void move() {
-		this.changeTurn();
-		this.players[value].move();
+	private int getOtherValue() {
+		return (this.value + 1) % Turn.PLAYERS;
 	}
-
-	private void changeTurn() {
-		if (this.value == 0) {
-			this.value = 1;
-		} else {
-			this.value = 0;
-		}
+	
+	Player getPlayer() {
+		return this.players[this.value];
+	}
+	
+	Player getOtherPlayer() {
+		return this.players[this.getOtherValue()];
 	}
 
 	Token getToken() {

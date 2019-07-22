@@ -8,25 +8,26 @@ public class TicTacToe extends WithConsoleModel{
 
 	TicTacToe() {
 		this.board = new Board();
-		this.players = new Player[Board.PLAYERS];
-		for (int i = 0; i < Board.PLAYERS; i++) {
+		this.players = new Player[Turn.PLAYERS];
+		for (int i = 0; i < Turn.PLAYERS; i++) {
 			this.players[i] = new Player(this.board, Token.values()[i]);
 		}
 		this.turn = new Turn(this.players);
 	}
 
 	private void play() {
-		this.console.writeln("----- TIC TAC TOE -----");
+		WithConsoleModel.console.writeln("----- TIC TAC TOE -----");
 		this.board.draw();
 		do {
 			if (!this.board.isCompleted()) {
-				this.turn.put();
+				this.turn.getPlayer().put();
 			} else {
-				this.turn.move();
+				this.turn.getPlayer().move();
 			}
+			this.turn.change();
 			this.board.draw();
-		} while (!this.board.isTicTacToe(this.turn.getToken()));
-		this.console.writeln("You win!!! :-)");
+		} while (!this.board.isTicTacToe(this.turn.getOtherPlayer().getToken()));
+		this.turn.getOtherPlayer().writeWin();
 	}
 
 	public static void main(String[] args) {

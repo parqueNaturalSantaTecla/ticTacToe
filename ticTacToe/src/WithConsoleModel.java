@@ -1,9 +1,9 @@
 abstract class WithConsoleModel {
 
-	protected Console console;
-
-	protected WithConsoleModel() {
-		this.console = new Console();
+	protected static Console console;
+	
+	static {
+		WithConsoleModel.console = new Console();
 	}
 	
 }
