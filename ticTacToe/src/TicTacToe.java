@@ -9,7 +9,7 @@ class TicTacToe extends Console {
 	int turn = 0;
 
 	final int DIMENSION = 3;
-	
+
 	final int COORDINATES = 2;
 
 	int[][][] board = new int[PLAYERS][DIMENSION][];
@@ -20,27 +20,19 @@ class TicTacToe extends Console {
 
 	final String[] ERRORS = new String[] { "The coordinates is not empty", "There is not a token of yours",
 			"The origin and target coordinatess are the same" };
-	
+
 	final int NOT_ERROR = -1;
-	
 	final int NOT_EMPTY = 0;
-	
 	final int NOT_OWNER = 1;
-	
 	final int SAME_SQUARE = 2;
-	
-	final int HORIZONTAL = 0;
-
-	final int VERTICAL = 1;
-
-	final int MAIN_DIAGONAL = 2;
-
-	final int INVERSE_DIAGONAL = 3;
 
 	final int NOT_DIRECTION = -1;
-	
+	final int HORIZONTAL = 0;
+	final int VERTICAL = 1;
+	final int MAIN_DIAGONAL = 2;
+	final int INVERSE_DIAGONAL = 3;
+
 	final int X = 0;
-	
 	final int Y = 1;
 
 	void exec() {
@@ -59,11 +51,7 @@ class TicTacToe extends Console {
 	}
 
 	private int otherTurn() {
-		if (turn == 0) {
-			return 1;
-		} else {
-			return 0;
-		}
+		return (turn + 1) % PLAYERS;
 	}
 
 	private void changeTurn() {
@@ -75,8 +63,7 @@ class TicTacToe extends Console {
 		int error;
 		do {
 			error = NOT_ERROR;
-			coordinates[X] = readInt("Enter a row to put a token:");
-			coordinates[Y] = readInt("Enter a column to put a token:");
+			coordinates = readCoordinates("put");
 			if (!isEmpty(coordinates)) {
 				error = NOT_EMPTY;
 				write(ERRORS[error]);
@@ -98,8 +85,7 @@ class TicTacToe extends Console {
 		int error;
 		do {
 			error = NOT_ERROR;
-			originCoordinates[X] = readInt("Enter a row to remove a token:");
-			originCoordinates[Y] = readInt("Enter a column to remove a token:");
+			originCoordinates = readCoordinates("remove");
 			if (!isOccupied(originCoordinates)) {
 				error = NOT_OWNER;
 				write(ERRORS[error]);
@@ -108,8 +94,7 @@ class TicTacToe extends Console {
 		int[] targetCoordinates = new int[COORDINATES];
 		do {
 			error = NOT_ERROR;
-			targetCoordinates[X] = readInt("Enter a row to put a token:");
-			targetCoordinates[Y] = readInt("Enter a column to put a token:");
+			targetCoordinates = readCoordinates("put");
 			if (originCoordinates[0] == targetCoordinates[0] && originCoordinates[1] == targetCoordinates[1]) {
 				error = SAME_SQUARE;
 				write(ERRORS[error]);
@@ -120,6 +105,13 @@ class TicTacToe extends Console {
 		} while (error != NOT_ERROR);
 		remove(originCoordinates);
 		putOnBoard(targetCoordinates);
+	}
+
+	private int[] readCoordinates(String reason) {
+		int[] coordinates = new int[COORDINATES];
+		coordinates[X] = readInt("Enter a row to " + reason + " a token:");
+		coordinates[Y] = readInt("Enter a column to " + reason + " a token:");
+		return coordinates;
 	}
 
 	private boolean isOccupied(int[] originCoordinates) {
@@ -199,7 +191,7 @@ class TicTacToe extends Console {
 		if (direction == NOT_DIRECTION) {
 			return false;
 		}
-		return direction == getDirection(playerCoordinates[1], playerCoordinates[2] );
+		return direction == getDirection(playerCoordinates[1], playerCoordinates[2]);
 	}
 
 	private int getDirection(int[] leftCoordinates, int[] rightCoordinates) {
