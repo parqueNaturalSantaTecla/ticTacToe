@@ -1,6 +1,6 @@
 class Coordinate {
 
-	static final int DIMENSION = 3;
+	final int dimension = 3;
 
 	private int row;
 
@@ -31,7 +31,7 @@ class Coordinate {
 	}
 
 	private boolean inInverseDiagonal() {
-		return this.row + this.column == Coordinate.DIMENSION - 1;
+		return this.row + this.column == this.dimension - 1;
 	}
 
 	private boolean inMainDiagonal() {
@@ -50,14 +50,14 @@ class Coordinate {
 		do {
 			Console console = new Console();
 			console.writeln(title);
-			this.row = console.readInt("Row: ");
-			this.column = console.readInt("Column: ");
+			this.row = console.readInt("Row: ") - 1;
+			this.column = console.readInt("Column: ") - 1;
 		} while (!this.isValid());
 	}
 
 	private boolean isValid() {
-		return this.row >= 0 && this.row < Coordinate.DIMENSION && this.column >= 0
-				&& this.column < Coordinate.DIMENSION;
+		return this.row >= 0 && this.row < this.dimension && this.column >= 0
+				&& this.column < this.dimension;
 	}
 
 	int getRow() {

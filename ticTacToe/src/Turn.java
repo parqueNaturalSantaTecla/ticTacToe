@@ -1,6 +1,6 @@
 class Turn {
 
-	static final int PLAYERS = 2;
+	final int players = 2;
 
 	private int value;
 
@@ -17,7 +17,7 @@ class Turn {
 	}
 
 	int getOtherValue() {
-		return (this.value + 1) % Turn.PLAYERS;
+		return (this.value + 1) % this.players;
 	}
 
 }

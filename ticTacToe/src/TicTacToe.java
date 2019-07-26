@@ -8,11 +8,11 @@ class TicTacToe {
 
 	TicTacToe() {
 		this.board = new Board();
-		this.players = new Player[Turn.PLAYERS];
-		for (int i = 0; i < Turn.PLAYERS; i++) {
+		this.turn = new Turn();
+		this.players = new Player[this.turn.players];
+		for (int i = 0; i < this.turn.players; i++) {
 			this.players[i] = new Player(Token.values()[i]);
 		}
-		this.turn = new Turn();
 	}
 
 	private void play() {

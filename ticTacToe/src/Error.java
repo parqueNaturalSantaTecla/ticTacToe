@@ -1,12 +1,14 @@
-enum Error {
+class Error {
 
-	NOT_EMPTY("The square is not empty"),
-	NOT_OWNER("There is not a token of yours"),
-	SAME_SQUARE("The origin and target squares are the same");
+	static final Error NOT_EMPTY = new Error("The square is not empty");
+	
+	static final Error NOT_OWNER = new Error("There is not a token of yours");
+	
+	static final Error SAME_SQUARE = new Error("The origin and target squares are the same");
 	
 	private String message;
 	
-	Error(String message){
+	private Error(String message){
 		this.message = message;
 	}
 	
