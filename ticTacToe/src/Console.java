@@ -9,19 +9,19 @@ class Console {
 		String input = null;
 		boolean ok = false;
 		do {
-			this.write(title);
+			write(title);
 			try {
-				input = this.bufferedReader.readLine();
+				input = bufferedReader.readLine();
 				ok = true;
 			} catch (Exception ex) {
-				this.writeError("characte string");
+				writeError("characte string");
 			}
 		} while (!ok);
 		return input;
 	}
 
 	String readString() {
-		return this.readString("");
+		return readString("");
 	}
 
 	int readInt(String title) {
@@ -29,10 +29,10 @@ class Console {
 		boolean ok = false;
 		do {
 			try {
-				input = Integer.parseInt(this.readString(title));
+				input = Integer.parseInt(readString(title));
 				ok = true;
 			} catch (Exception ex) {
-				this.writeError("integer");
+				writeError("integer");
 			}
 		} while (!ok);
 		return input;
@@ -42,9 +42,9 @@ class Console {
 		char charValue = ' ';
 		boolean ok = false;
 		do {
-			String input = this.readString(title);
+			String input = readString(title);
 			if (input.length() != 1) {
-				this.writeError("character");
+				writeError("character");
 			} else {
 				charValue = input.charAt(0);
 				ok = true;
