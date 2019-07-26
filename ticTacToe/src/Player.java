@@ -1,13 +1,13 @@
 class Player {
 
-	private Token token;
+	private int token;
 
-	Player(Token token) {
+	Player(int token) {
 		this.token = token;
 	}
 
 	void put(Board board) {
-		Coordinate coordinate = new Coordinate();
+		Coordinate coordinate = new Coordinate(board.getDimension());
 		Error error;
 		do {
 			error = null;
@@ -21,7 +21,7 @@ class Player {
 	}
 
 	void move(Board board) {
-		Coordinate originCoordinate = new Coordinate();
+		Coordinate originCoordinate = new Coordinate(board.getDimension());
 		Error error;
 		do {
 			error = null;
@@ -31,7 +31,7 @@ class Player {
 				error.write();
 			}
 		} while (error != null);
-		Coordinate targetCoordinate = new Coordinate();
+		Coordinate targetCoordinate = new Coordinate(board.getDimension());
 		do {
 			error = null;
 			targetCoordinate.read("Enter a coordinate to put a token:");
@@ -45,13 +45,12 @@ class Player {
 		} while (error != null);
 		board.move(originCoordinate, targetCoordinate);
 	}
-	
-	void writeWin() {
-		this.token.write();
-		new Console().writeln(" Player: You win!!! :-)");
+
+	void writeWin(char symbol) {
+		new Console().writeln(symbol + " Player: You win!!! :-)");
 	}
 
-	Token getToken() {
+	int getToken() {
 		return this.token;
 	}
 

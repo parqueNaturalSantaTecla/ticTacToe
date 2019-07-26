@@ -1,37 +1,45 @@
 class Coordinate {
 
-	final int dimension = 3;
+	final int NOT_DIRECTION = -1;
+	final int VERTICAL = 0;
+	final int HORIZONTAL = 1;
+	final int MAIN_DIAGONAL = 2;
+	final int INVERSE_DIAGONAL = 3;
+
+	private final int DIMENSION;
 
 	private int row;
 
 	private int column;
 
-	Coordinate() {
+	Coordinate(int dimension) {
+		this.DIMENSION = dimension;
 	}
 
-	Coordinate(int row, int column) {
+	Coordinate(int dimension, int row, int column) {
+		this(dimension);
 		this.row = row;
 		this.column = column;
 	}
 
-	Direction getDirection(Coordinate coordinate) {
+	int getDirection(Coordinate coordinate) {
 		if (this.inHorizontal(coordinate)) {
-			return Direction.HORIZONTAL;
+			return this.HORIZONTAL;
 		}
 		if (this.inVertical(coordinate)) {
-			return Direction.VERTICAL;
+			return this.VERTICAL;
 		}
 		if (this.inMainDiagonal() && coordinate.inMainDiagonal()) {
-			return Direction.MAIN_DIAGONAL;
+			return this.MAIN_DIAGONAL;
 		}
 		if (this.inInverseDiagonal() && coordinate.inInverseDiagonal()) {
-			return Direction.INVERSE_DIAGONAL;
+			return this.INVERSE_DIAGONAL;
 		}
-		return null;
+		return NOT_DIRECTION;
 	}
 
 	private boolean inInverseDiagonal() {
-		return this.row + this.column == this.dimension - 1;
+		return this.row + this.column == this.DIMENSION - 1;
 	}
 
 	private boolean inMainDiagonal() {
@@ -56,8 +64,7 @@ class Coordinate {
 	}
 
 	private boolean isValid() {
-		return this.row >= 0 && this.row < this.dimension && this.column >= 0
-				&& this.column < this.dimension;
+		return this.row >= 0 && this.row < this.DIMENSION && this.column >= 0 && this.column < this.DIMENSION;
 	}
 
 	int getRow() {
@@ -66,6 +73,10 @@ class Coordinate {
 
 	int getColumn() {
 		return this.column;
+	}
+
+	boolean inDirection(Coordinate coordinate) {
+		return this.getDirection(coordinate) != this.NOT_DIRECTION;
 	}
 
 }

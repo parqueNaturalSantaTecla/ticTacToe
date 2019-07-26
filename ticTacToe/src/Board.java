@@ -1,32 +1,35 @@
 class Board {
 
-	final char empty = '-';
+	private final int EMPTY = 2;
 
-	final int players = 2;
+	private final int DIMENSION = 3;
 
-	final int dimension = 3;
+	private final int PLAYERS;
+	
+	private final char[] SYMBOLS = new char[] {'X', 'O', '-'};
 
 	private Coordinate[][] coordinates;
 
-	Board() {
-		this.coordinates = new Coordinate[2][3];
-		for (int i = 0; i < this.players; i++) {
-			for (int j = 0; j < this.dimension; j++) {
+	Board(int players) {
+		this.PLAYERS = players;
+		this.coordinates = new Coordinate[this.PLAYERS][this.DIMENSION];
+		for (int i = 0; i < this.PLAYERS; i++) {
+			for (int j = 0; j < this.DIMENSION; j++) {
 				this.coordinates[i][j] = null;
 			}
 		}
 	}
 
-	void draw() {
+	void write() {
 		Console console = new Console();
 		console.writeln("-------------");
-		for (int i = 0; i < this.dimension; i++) {
+		for (int i = 0; i < this.DIMENSION; i++) {
 			console.write("| ");
-			for (int j = 0; j < this.dimension; j++) {
-				if (this.getToken(new Coordinate(i, j)) == null) {
-					console.write(this.empty);
+			for (int j = 0; j < this.DIMENSION; j++) {
+				if (this.getToken(new Coordinate(this.DIMENSION, i, j)) == this.EMPTY) {
+					console.write(this.SYMBOLS[this.EMPTY]);
 				} else {
-					this.getToken(new Coordinate(i, j)).write();
+					console.write(this.SYMBOLS[this.getToken(new Coordinate(this.DIMENSION, i, j))]);
 				}
 				console.write(" | ");
 			}
@@ -35,35 +38,35 @@ class Board {
 		console.writeln("-------------");
 	}
 
-	Token getToken(Coordinate coordinate) {
-		for (int i = 0; i < this.players; i++) {
-			for (int j = 0; j < this.dimension; j++) {
+	int getToken(Coordinate coordinate) {
+		for (int i = 0; i < this.PLAYERS; i++) {
+			for (int j = 0; j < this.DIMENSION; j++) {
 				if (this.coordinates[i][j] != null && this.coordinates[i][j].getRow() == coordinate.getRow()
 						&& this.coordinates[i][j].getColumn() == coordinate.getColumn()) {
-					return Token.values()[i];
+					return i;
 				}
 			}
 		}
-		return null;
+		return this.EMPTY;
 	}
 
 	void move(Coordinate originCoordinate, Coordinate coordinate) {
-		Token token = this.getToken(originCoordinate);
+		int token = this.getToken(originCoordinate);
 		this.remove(originCoordinate);
 		this.put(coordinate, token);
 	}
 
-	void put(Coordinate coordinate, Token token) {
+	void put(Coordinate coordinate, int token) {
 		int i = 0;
-		while (this.coordinates[token.ordinal()][i] != null) {
+		while (this.coordinates[token][i] != null) {
 			i++;
 		}
-		this.coordinates[token.ordinal()][i] = coordinate;
+		this.coordinates[token][i] = coordinate;
 	}
 
 	private void remove(Coordinate coordinate) {
-		for (int i = 0; i < this.players; i++) {
-			for (int j = 0; j < this.dimension; j++) {
+		for (int i = 0; i < this.PLAYERS; i++) {
+			for (int j = 0; j < this.DIMENSION; j++) {
 				if (this.coordinates[i][j] != null && this.coordinates[i][j].getRow() == coordinate.getRow()
 						&& this.coordinates[i][j].getColumn() == coordinate.getColumn()) {
 					this.coordinates[i][j] = null;
@@ -72,16 +75,21 @@ class Board {
 		}
 	}
 
-	boolean isTicTacToe(Token token) {
-		Coordinate[] coordinates = this.coordinates[token.ordinal()];
-		if (this.numberOfCoordinates(coordinates) < this.dimension) {
+	boolean isTicTacToe(int token) {
+		Coordinate[] coordinates = this.coordinates[token];
+		if (this.numberOfCoordinates(coordinates) < this.DIMENSION) {
 			return false;
 		}
-		Direction direction = coordinates[0].getDirection(coordinates[1]);
-		if (direction == null) {
+		if (!coordinates[0].inDirection(coordinates[1])) {
 			return false;
 		}
-		return direction == coordinates[1].getDirection(coordinates[2]);
+		int direction = coordinates[0].getDirection(coordinates[1]);
+		for (int i = 1; i < coordinates.length - 1; i++) {
+			if (direction != coordinates[i].getDirection(coordinates[i + 1])) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	private int numberOfCoordinates(Coordinate[] coordinates) {
@@ -95,8 +103,8 @@ class Board {
 	}
 
 	boolean isCompleted() {
-		for (int i = 0; i < this.players; i++) {
-			for (int j = 0; j < this.dimension; j++) {
+		for (int i = 0; i < this.PLAYERS; i++) {
+			for (int j = 0; j < this.DIMENSION; j++) {
 				if (this.coordinates[i][j] == null) {
 					return false;
 				}
@@ -106,11 +114,19 @@ class Board {
 	}
 
 	boolean isEmpty(Coordinate coordinate) {
-		return this.isOccupied(coordinate, null);
+		return this.isOccupied(coordinate, this.EMPTY);
 	}
 
-	boolean isOccupied(Coordinate coordinate, Token token) {
+	boolean isOccupied(Coordinate coordinate, int token) {
 		return this.getToken(coordinate) == token;
+	}
+
+	int getDimension() {
+		return this.DIMENSION;
+	}
+
+	char getSymbol(int token) {
+		return this.SYMBOLS[token];
 	}
 
 }

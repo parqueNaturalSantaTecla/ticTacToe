@@ -61,8 +61,16 @@ class Console {
 		System.out.print(string);
 	}
 
+	void write(int integer) {
+		System.out.print(integer);
+	}
+
 	void writeln(String string) {
 		System.out.println(string);
+	}
+
+	void writeln(int integer) {
+		System.out.println(integer);
 	}
 
 	void write(char character) {
