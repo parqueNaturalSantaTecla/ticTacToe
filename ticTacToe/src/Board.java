@@ -22,7 +22,7 @@ class Board {
 
 	void write() {
 		Console console = new Console();
-		console.writeln("-------------");
+		console.writeln("-----------------------------------------------------");
 		for (int i = 0; i < this.DIMENSION; i++) {
 			console.write("| ");
 			for (int j = 0; j < this.DIMENSION; j++) {
@@ -35,10 +35,10 @@ class Board {
 			}
 			console.writeln();
 		}
-		console.writeln("-------------");
+		console.writeln("-----------------------------------------------------");
 	}
 
-	int getToken(Coordinate coordinate) {
+	private int getToken(Coordinate coordinate) {
 		for (int i = 0; i < this.PLAYERS; i++) {
 			for (int j = 0; j < this.DIMENSION; j++) {
 				if (this.coordinates[i][j] != null && this.coordinates[i][j].getRow() == coordinate.getRow()

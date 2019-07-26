@@ -17,7 +17,7 @@ class TicTacToe {
 
 	private void play() {
 		Console console = new Console();
-		console.writeln("----- TIC TAC TOE -----");
+		console.writeln("-------------------- TIC TAC TOE --------------------");
 		this.board.write();
 		do {
 			if (!this.board.isCompleted()) {

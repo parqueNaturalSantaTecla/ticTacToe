@@ -1,10 +1,10 @@
 class Coordinate {
 
-	final int NOT_DIRECTION = -1;
-	final int VERTICAL = 0;
-	final int HORIZONTAL = 1;
-	final int MAIN_DIAGONAL = 2;
-	final int INVERSE_DIAGONAL = 3;
+	private final int NOT_DIRECTION = -1;
+	private final int VERTICAL = 0;
+	private final int HORIZONTAL = 1;
+	private final int MAIN_DIAGONAL = 2;
+	private final int INVERSE_DIAGONAL = 3;
 
 	private final int DIMENSION;
 
@@ -77,6 +77,10 @@ class Coordinate {
 
 	boolean inDirection(Coordinate coordinate) {
 		return this.getDirection(coordinate) != this.NOT_DIRECTION;
+	}
+
+	public boolean equals(Coordinate coordinate) {
+		return this.column == coordinate.column && this.row == coordinate.row;
 	}
 
 }
