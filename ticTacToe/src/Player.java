@@ -8,32 +8,35 @@ class Player {
 	private final int SAME_COORDINATES = 2;
 
 	private int token;
+	
+	private Board board;
 
-	Player(int token) {
+	Player(int token, Board board) {
 		this.token = token;
+		this.board = board;
 	}
 
-	void put(Board board) {
+	void put() {
 		Coordinate coordinate = new Coordinate(board.getDimension());
 		String error;
 		do {
 			error = null;
 			coordinate.read("Enter a coordinate to put a token:");
-			if (!board.isEmpty(coordinate)) {
+			if (!this.board.isEmpty(coordinate)) {
 				error = this.ERRORS[this.NOT_EMPTY];
 				new Console().writeln(error);
 			}
 		} while (error != null);
-		board.put(coordinate, this.token);
+		this.board.put(coordinate, this.token);
 	}
 
-	void move(Board board) {
+	void move() {
 		Coordinate originCoordinate = new Coordinate(board.getDimension());
 		String error;
 		do {
 			error = null;
 			originCoordinate.read("Enter a coordinate to remove a token:");
-			if (!board.isOccupied(originCoordinate, this.token)) {
+			if (!this.board.isOccupied(originCoordinate, this.token)) {
 				error = this.ERRORS[this.NOT_OWNER];
 				new Console().writeln(error);
 			}
@@ -45,12 +48,12 @@ class Player {
 			if (originCoordinate.equals(targetCoordinate)) {
 				error = this.ERRORS[this.SAME_COORDINATES];
 				new Console().writeln(error);
-			} else if (!board.isEmpty(targetCoordinate)) {
+			} else if (!this.board.isEmpty(targetCoordinate)) {
 				error = this.ERRORS[this.NOT_EMPTY];
 				new Console().writeln(error);
 			}
 		} while (error != null);
-		board.move(originCoordinate, targetCoordinate);
+		this.board.move(originCoordinate, targetCoordinate);
 	}
 
 	void writeWin(char symbol) {
