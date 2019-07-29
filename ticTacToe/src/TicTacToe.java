@@ -8,7 +8,7 @@ class TicTacToe extends Console {
 
 	int turn = 0;
 
-	final int DIMENSION = 4;
+	final int DIMENSION = 3;
 
 	final int COORDINATES = 2;
 
