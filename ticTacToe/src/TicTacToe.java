@@ -1,4 +1,6 @@
 class TicTacToe {
+	
+	private final int PLAYERS = 2;
 
 	private Board board;
 
@@ -7,10 +9,10 @@ class TicTacToe {
 	private Turn turn;
 
 	TicTacToe() {
-		this.turn = new Turn();
-		this.board = new Board(this.turn.getPlayers());
-		this.players = new Player[this.turn.getPlayers()];
-		for (int i = 0; i < this.turn.getPlayers(); i++) {
+		this.turn = new Turn(new Player());
+		this.board = new Board(this.getPlayers());
+		this.players = new Player[this.getPlayers()];
+		for (int i = 0; i < this.getPlayers(); i++) {
 			this.players[i] = new Player(i, this.board);
 		}
 	}
@@ -30,6 +32,10 @@ class TicTacToe {
 		} while (!this.board.isTicTacToe(this.players[this.turn.getOtherValue()].getToken()));
 		int otherValue = this.turn.getOtherValue();
 		this.players[otherValue].writeWin(this.board.getSymbol(otherValue));
+	}
+	
+	int getPlayers() {
+		return this.PLAYERS;
 	}
 
 	public static void main(String[] args) {

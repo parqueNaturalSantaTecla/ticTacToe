@@ -1,11 +1,14 @@
 class Turn {
 
-	private final int PLAYERS = 2;
+//	private final int PLAYERS = 2;
 
 	private int value;
+	
+	private Player player;
 
-	Turn() {
+	Turn(Player player) {
 		this.value = 0;
+		this.player = player;
 	}
 
 	void change() {
@@ -20,8 +23,8 @@ class Turn {
 		return (this.value + 1) % this.PLAYERS;
 	}
 
-	int getPlayers() {
-		return this.PLAYERS;
-	}
+//	int getPlayers() {
+//		return this.PLAYERS;
+//	}
 
 }
