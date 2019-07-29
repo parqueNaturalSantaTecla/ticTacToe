@@ -8,7 +8,7 @@ class TicTacToe extends Console {
 
 	int turn = 0;
 
-	final int DIMENSION = 3;
+	final int DIMENSION = 4;
 
 	final int COORDINATES = 2;
 
@@ -19,12 +19,12 @@ class TicTacToe extends Console {
 	final String[] TOKENS = new String[] { "O", "X" };
 
 	final String[] ERRORS = new String[] { "The coordinates is not empty", "There is not a token of yours",
-			"The origin and target coordinatess are the same" };
+			"The origin and target coordinates are the same" };
 
 	final int NOT_ERROR = -1;
 	final int NOT_EMPTY = 0;
 	final int NOT_OWNER = 1;
-	final int SAME_SQUARE = 2;
+	final int SAME_COORDINATES = 2;
 
 	final int NOT_DIRECTION = -1;
 	final int HORIZONTAL = 0;
@@ -36,7 +36,7 @@ class TicTacToe extends Console {
 	final int Y = 1;
 
 	void exec() {
-		writeln("----- TIC TAC TOE -----");
+		writeln("-------------------- TIC TAC TOE --------------------");
 		drawBoard();
 		do {
 			if (!isCompleted()) {
@@ -96,7 +96,7 @@ class TicTacToe extends Console {
 			error = NOT_ERROR;
 			targetCoordinates = readCoordinates("put");
 			if (originCoordinates[0] == targetCoordinates[0] && originCoordinates[1] == targetCoordinates[1]) {
-				error = SAME_SQUARE;
+				error = SAME_COORDINATES;
 				write(ERRORS[error]);
 			} else if (!isEmpty(targetCoordinates)) {
 				error = NOT_EMPTY;
@@ -140,7 +140,7 @@ class TicTacToe extends Console {
 	}
 
 	private void drawBoard() {
-		writeln("-------------");
+		writeln("-----------------------------------------------------");
 		for (int i = 1; i <= DIMENSION; i++) {
 			write("| ");
 			for (int j = 1; j <= DIMENSION; j++) {
@@ -153,7 +153,7 @@ class TicTacToe extends Console {
 			}
 			writeln();
 		}
-		writeln("-------------");
+		writeln("-----------------------------------------------------");
 	}
 
 	String getToken(int[] coordinates) {
