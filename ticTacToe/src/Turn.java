@@ -1,30 +1,31 @@
 class Turn {
 
-//	private final int PLAYERS = 2;
+	private final int PLAYERS;
 
 	private int value;
-	
-	private Player player;
 
-	Turn(Player player) {
+	private Player[] players;
+
+	Turn(int numberPlayers, Player[] players) {
 		this.value = 0;
-		this.player = player;
+		this.players = players;
+		this.PLAYERS = numberPlayers;
 	}
 
 	void change() {
 		this.value = this.getOtherValue();
 	}
 
-	int getValue() {
-		return this.value;
+	Player getPlayer() {
+		return this.players[this.value];
 	}
 
 	int getOtherValue() {
 		return (this.value + 1) % this.PLAYERS;
 	}
 
-//	int getPlayers() {
-//		return this.PLAYERS;
-//	}
+	Player getOtherPlayer() {
+		return this.players[this.getOtherValue()];
+	}
 
 }
