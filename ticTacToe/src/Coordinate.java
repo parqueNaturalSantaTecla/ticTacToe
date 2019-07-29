@@ -1,11 +1,5 @@
 class Coordinate {
 
-	static final int NOT_DIRECTION = -1;
-	static final int VERTICAL = 0;
-	static final int HORIZONTAL = 1;
-	static final int MAIN_DIAGONAL = 2;
-	static final int INVERSE_DIAGONAL = 3;
-
 	private int row;
 
 	private int column;
@@ -18,20 +12,20 @@ class Coordinate {
 		this.column = column;
 	}
 
-	int getDirection(Coordinate coordinate) {
+	Direction getDirection(Coordinate coordinate) {
 		if (this.inHorizontal(coordinate)) {
-			return Coordinate.HORIZONTAL;
+			return Direction.HORIZONTAL;
 		}
 		if (this.inVertical(coordinate)) {
-			return Coordinate.VERTICAL;
+			return Direction.VERTICAL;
 		}
 		if (this.inMainDiagonal() && coordinate.inMainDiagonal()) {
-			return Coordinate.MAIN_DIAGONAL;
+			return Direction.MAIN_DIAGONAL;
 		}
 		if (this.inInverseDiagonal() && coordinate.inInverseDiagonal()) {
-			return Coordinate.INVERSE_DIAGONAL;
+			return Direction.INVERSE_DIAGONAL;
 		}
-		return Coordinate.NOT_DIRECTION;
+		return null;
 	}
 
 	private boolean inInverseDiagonal() {
@@ -72,10 +66,10 @@ class Coordinate {
 	}
 
 	boolean inDirection(Coordinate coordinate) {
-		return this.getDirection(coordinate) != Coordinate.NOT_DIRECTION;
+		return this.getDirection(coordinate) != null;
 	}
 
-	public boolean equals(Coordinate coordinate) {
+	boolean equals(Coordinate coordinate) {
 		return this.column == coordinate.column && this.row == coordinate.row;
 	}
 

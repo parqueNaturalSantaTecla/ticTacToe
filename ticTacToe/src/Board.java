@@ -1,10 +1,8 @@
 class Board {
 
-	static final int EMPTY = 2;
-
 	static final int DIMENSION = 3;
-	
-	static final char[] SYMBOLS = new char[] {'X', 'O', '-'};
+
+	static final char EMPTY = '-';
 
 	private Coordinate[][] coordinates;
 
@@ -23,10 +21,10 @@ class Board {
 		for (int i = 0; i < Board.DIMENSION; i++) {
 			console.write("| ");
 			for (int j = 0; j < Board.DIMENSION; j++) {
-				if (this.getToken(new Coordinate(i, j)) == Board.EMPTY) {
-					console.write(Board.SYMBOLS[Board.EMPTY]);
+				if (this.getToken(new Coordinate(i, j)) == null) {
+					console.write(Board.EMPTY);
 				} else {
-					console.write(Board.SYMBOLS[this.getToken(new Coordinate(i, j))]);
+					this.getToken(new Coordinate(i, j)).write();
 				}
 				console.write(" | ");
 			}
@@ -35,30 +33,30 @@ class Board {
 		console.writeln("-----------------------------------------------------");
 	}
 
-	private int getToken(Coordinate coordinate) {
+	private Token getToken(Coordinate coordinate) {
 		for (int i = 0; i < Turn.PLAYERS; i++) {
 			for (int j = 0; j < Board.DIMENSION; j++) {
 				if (this.coordinates[i][j] != null && this.coordinates[i][j].getRow() == coordinate.getRow()
 						&& this.coordinates[i][j].getColumn() == coordinate.getColumn()) {
-					return i;
+					return Token.values()[i];
 				}
 			}
 		}
-		return Board.EMPTY;
+		return null;
 	}
 
 	void move(Coordinate originCoordinate, Coordinate coordinate) {
-		int token = this.getToken(originCoordinate);
+		Token token = this.getToken(originCoordinate);
 		this.remove(originCoordinate);
 		this.put(coordinate, token);
 	}
 
-	void put(Coordinate coordinate, int token) {
+	void put(Coordinate coordinate, Token token) {
 		int i = 0;
-		while (this.coordinates[token][i] != null) {
+		while (this.coordinates[token.ordinal()][i] != null) {
 			i++;
 		}
-		this.coordinates[token][i] = coordinate;
+		this.coordinates[token.ordinal()][i] = coordinate;
 	}
 
 	private void remove(Coordinate coordinate) {
@@ -72,15 +70,15 @@ class Board {
 		}
 	}
 
-	boolean isTicTacToe(int token) {
-		Coordinate[] coordinates = this.coordinates[token];
+	boolean isTicTacToe(Token token) {
+		Coordinate[] coordinates = this.coordinates[token.ordinal()];
 		if (this.numberOfCoordinates(coordinates) < Board.DIMENSION) {
 			return false;
 		}
 		if (!coordinates[0].inDirection(coordinates[1])) {
 			return false;
 		}
-		int direction = coordinates[0].getDirection(coordinates[1]);
+		Direction direction = coordinates[0].getDirection(coordinates[1]);
 		for (int i = 1; i < coordinates.length - 1; i++) {
 			if (direction != coordinates[i].getDirection(coordinates[i + 1])) {
 				return false;
@@ -111,10 +109,10 @@ class Board {
 	}
 
 	boolean isEmpty(Coordinate coordinate) {
-		return this.isOccupied(coordinate, Board.EMPTY);
+		return this.isOccupied(coordinate, null);
 	}
 
-	boolean isOccupied(Coordinate coordinate, int token) {
+	boolean isOccupied(Coordinate coordinate, Token token) {
 		return this.getToken(coordinate) == token;
 	}
 
