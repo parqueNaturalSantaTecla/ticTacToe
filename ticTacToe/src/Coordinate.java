@@ -1,45 +1,41 @@
 class Coordinate {
 
-	private final int NOT_DIRECTION = -1;
-	private final int VERTICAL = 0;
-	private final int HORIZONTAL = 1;
-	private final int MAIN_DIAGONAL = 2;
-	private final int INVERSE_DIAGONAL = 3;
-
-	private final int DIMENSION;
+	static final int NOT_DIRECTION = -1;
+	static final int VERTICAL = 0;
+	static final int HORIZONTAL = 1;
+	static final int MAIN_DIAGONAL = 2;
+	static final int INVERSE_DIAGONAL = 3;
 
 	private int row;
 
 	private int column;
 
-	Coordinate(int dimension) {
-		this.DIMENSION = dimension;
+	Coordinate() {
 	}
 
-	Coordinate(int dimension, int row, int column) {
-		this(dimension);
+	Coordinate(int row, int column) {
 		this.row = row;
 		this.column = column;
 	}
 
 	int getDirection(Coordinate coordinate) {
 		if (this.inHorizontal(coordinate)) {
-			return this.HORIZONTAL;
+			return Coordinate.HORIZONTAL;
 		}
 		if (this.inVertical(coordinate)) {
-			return this.VERTICAL;
+			return Coordinate.VERTICAL;
 		}
 		if (this.inMainDiagonal() && coordinate.inMainDiagonal()) {
-			return this.MAIN_DIAGONAL;
+			return Coordinate.MAIN_DIAGONAL;
 		}
 		if (this.inInverseDiagonal() && coordinate.inInverseDiagonal()) {
-			return this.INVERSE_DIAGONAL;
+			return Coordinate.INVERSE_DIAGONAL;
 		}
-		return NOT_DIRECTION;
+		return Coordinate.NOT_DIRECTION;
 	}
 
 	private boolean inInverseDiagonal() {
-		return this.row + this.column == this.DIMENSION - 1;
+		return this.row + this.column == Board.DIMENSION - 1;
 	}
 
 	private boolean inMainDiagonal() {
@@ -64,7 +60,7 @@ class Coordinate {
 	}
 
 	private boolean isValid() {
-		return this.row >= 0 && this.row < this.DIMENSION && this.column >= 0 && this.column < this.DIMENSION;
+		return this.row >= 0 && this.row < Board.DIMENSION && this.column >= 0 && this.column < Board.DIMENSION;
 	}
 
 	int getRow() {
@@ -76,7 +72,7 @@ class Coordinate {
 	}
 
 	boolean inDirection(Coordinate coordinate) {
-		return this.getDirection(coordinate) != this.NOT_DIRECTION;
+		return this.getDirection(coordinate) != Coordinate.NOT_DIRECTION;
 	}
 
 	public boolean equals(Coordinate coordinate) {

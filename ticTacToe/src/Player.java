@@ -1,11 +1,11 @@
 class Player {
 
-	private final String[] ERRORS = new String[] { "The square is not empty", "There is not a token of yours",
+	static final String[] ERRORS = new String[] { "The square is not empty", "There is not a token of yours",
 			"The origin and target squares are the same" };
 
-	private final int NOT_EMPTY = 0;
-	private final int NOT_OWNER = 1;
-	private final int SAME_COORDINATES = 2;
+	static final int NOT_EMPTY = 0;
+	static final int NOT_OWNER = 1;
+	static final int SAME_COORDINATES = 2;
 
 	private int token;
 	
@@ -17,13 +17,13 @@ class Player {
 	}
 
 	void put() {
-		Coordinate coordinate = new Coordinate(board.getDimension());
+		Coordinate coordinate = new Coordinate();
 		String error;
 		do {
 			error = null;
 			coordinate.read("Enter a coordinate to put a token:");
 			if (!this.board.isEmpty(coordinate)) {
-				error = this.ERRORS[this.NOT_EMPTY];
+				error = Player.ERRORS[Player.NOT_EMPTY];
 				new Console().writeln(error);
 			}
 		} while (error != null);
@@ -31,25 +31,25 @@ class Player {
 	}
 
 	void move() {
-		Coordinate originCoordinate = new Coordinate(board.getDimension());
+		Coordinate originCoordinate = new Coordinate();
 		String error;
 		do {
 			error = null;
 			originCoordinate.read("Enter a coordinate to remove a token:");
 			if (!this.board.isOccupied(originCoordinate, this.token)) {
-				error = this.ERRORS[this.NOT_OWNER];
+				error = Player.ERRORS[Player.NOT_OWNER];
 				new Console().writeln(error);
 			}
 		} while (error != null);
-		Coordinate targetCoordinate = new Coordinate(board.getDimension());
+		Coordinate targetCoordinate = new Coordinate();
 		do {
 			error = null;
 			targetCoordinate.read("Enter a coordinate to put a token:");
 			if (originCoordinate.equals(targetCoordinate)) {
-				error = this.ERRORS[this.SAME_COORDINATES];
+				error = Player.ERRORS[Player.SAME_COORDINATES];
 				new Console().writeln(error);
 			} else if (!this.board.isEmpty(targetCoordinate)) {
-				error = this.ERRORS[this.NOT_EMPTY];
+				error = Player.ERRORS[Player.NOT_EMPTY];
 				new Console().writeln(error);
 			}
 		} while (error != null);
