@@ -1,15 +1,24 @@
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 class Board extends WithConsoleModel {
 
 	static final char EMPTY = '-';
+	
+	private Map<Integer, Set<TicTacToeCoordinate>> coordinates;
 
-	private TicTacToeCoordinate[][] coordinates;
+//	private TicTacToeCoordinate[][] coordinates;
 
 	Board() {
-		this.coordinates = new TicTacToeCoordinate[Turn.PLAYERS][TicTacToeCoordinate.DIMENSION];
+		this.coordinates = new HashMap<Integer, Set<TicTacToeCoordinate>>();
+//		this.coordinates = new TicTacToeCoordinate[Turn.PLAYERS][TicTacToeCoordinate.DIMENSION];
 		for (int i = 0; i < Turn.PLAYERS; i++) {
-			for (int j = 0; j < TicTacToeCoordinate.DIMENSION; j++) {
-				this.coordinates[i][j] = null;
-			}
+			this.coordinates.put(i, new HashSet<TicTacToeCoordinate>());
+//			for (int j = 0; j < TicTacToeCoordinate.DIMENSION; j++) {
+//				this.coordinates[i][j] = null;
+//			}
 		}
 	}
 
@@ -31,14 +40,21 @@ class Board extends WithConsoleModel {
 	}
 
 	private Token getToken(TicTacToeCoordinate coordinate) {
-		for (int i = 0; i < Turn.PLAYERS; i++) {
-			for (int j = 0; j < TicTacToeCoordinate.DIMENSION; j++) {
-				if (this.coordinates[i][j] != null && this.coordinates[i][j].getRow() == coordinate.getRow()
-						&& this.coordinates[i][j].getColumn() == coordinate.getColumn()) {
+		for (Integer i: this.coordinates.keySet()) {
+			for (TicTacToeCoordinate coordinate1: this.coordinates.get(i)) {
+				if (coordinate1 != null && coordinate1.equals(coordinate)) {
 					return Token.values()[i];
 				}
 			}
 		}
+//		for (int i = 0; i < Turn.PLAYERS; i++) {
+//			for (int j = 0; j < TicTacToeCoordinate.DIMENSION; j++) {
+//				if (this.coordinates[i][j] != null && this.coordinates[i][j].getRow() == coordinate.getRow()
+//						&& this.coordinates[i][j].getColumn() == coordinate.getColumn()) {
+//					return Token.values()[i];
+//				}
+//			}
+//		}
 		return null;
 	}
 
