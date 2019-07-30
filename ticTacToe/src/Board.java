@@ -2,16 +2,14 @@ class Board {
 
 	static final int EMPTY = 2;
 
-	static final int DIMENSION = 3;
-	
-	static final char[] SYMBOLS = new char[] {'X', 'O', '-'};
+	static final char[] SYMBOLS = new char[] { 'X', 'O', '-' };
 
 	private Coordinate[][] coordinates;
 
 	Board() {
-		this.coordinates = new Coordinate[Turn.PLAYERS][Board.DIMENSION];
+		this.coordinates = new Coordinate[Turn.PLAYERS][Coordinate.DIMENSION];
 		for (int i = 0; i < Turn.PLAYERS; i++) {
-			for (int j = 0; j < Board.DIMENSION; j++) {
+			for (int j = 0; j < Coordinate.DIMENSION; j++) {
 				this.coordinates[i][j] = null;
 			}
 		}
@@ -20,9 +18,9 @@ class Board {
 	void write() {
 		Console console = new Console();
 		console.writeln("-----------------------------------------------------");
-		for (int i = 0; i < Board.DIMENSION; i++) {
+		for (int i = 0; i < Coordinate.DIMENSION; i++) {
 			console.write("| ");
-			for (int j = 0; j < Board.DIMENSION; j++) {
+			for (int j = 0; j < Coordinate.DIMENSION; j++) {
 				if (this.getToken(new Coordinate(i, j)) == Board.EMPTY) {
 					console.write(Board.SYMBOLS[Board.EMPTY]);
 				} else {
@@ -37,7 +35,7 @@ class Board {
 
 	private int getToken(Coordinate coordinate) {
 		for (int i = 0; i < Turn.PLAYERS; i++) {
-			for (int j = 0; j < Board.DIMENSION; j++) {
+			for (int j = 0; j < Coordinate.DIMENSION; j++) {
 				if (this.coordinates[i][j] != null && this.coordinates[i][j].getRow() == coordinate.getRow()
 						&& this.coordinates[i][j].getColumn() == coordinate.getColumn()) {
 					return i;
@@ -63,7 +61,7 @@ class Board {
 
 	private void remove(Coordinate coordinate) {
 		for (int i = 0; i < Turn.PLAYERS; i++) {
-			for (int j = 0; j < Board.DIMENSION; j++) {
+			for (int j = 0; j < Coordinate.DIMENSION; j++) {
 				if (this.coordinates[i][j] != null && this.coordinates[i][j].getRow() == coordinate.getRow()
 						&& this.coordinates[i][j].getColumn() == coordinate.getColumn()) {
 					this.coordinates[i][j] = null;
@@ -74,7 +72,7 @@ class Board {
 
 	boolean isTicTacToe(int token) {
 		Coordinate[] coordinates = this.coordinates[token];
-		if (this.numberOfCoordinates(coordinates) < Board.DIMENSION) {
+		if (this.numberOfCoordinates(coordinates) < Coordinate.DIMENSION) {
 			return false;
 		}
 		if (!coordinates[0].inDirection(coordinates[1])) {
@@ -101,7 +99,7 @@ class Board {
 
 	boolean isCompleted() {
 		for (int i = 0; i < Turn.PLAYERS; i++) {
-			for (int j = 0; j < Board.DIMENSION; j++) {
+			for (int j = 0; j < Coordinate.DIMENSION; j++) {
 				if (this.coordinates[i][j] == null) {
 					return false;
 				}
