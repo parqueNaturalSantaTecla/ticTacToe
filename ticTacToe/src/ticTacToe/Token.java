@@ -1,3 +1,6 @@
+package ticTacToe;
+import santaTecla.utils.Console;
+
 enum Token {
 	
 	TOKEN_X('X'),

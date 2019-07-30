@@ -1,3 +1,4 @@
+package ticTacToe;
 class MachinePlayer extends Player {
 
 	MachinePlayer(Token token, Board board) {
@@ -6,7 +7,7 @@ class MachinePlayer extends Player {
 
 	@Override
 	void put() {
-		TicTacToeCoordinate coordinate = new TicTacToeCoordinate();
+		Coordinate coordinate = new Coordinate();
 		Error error;
 		do {
 			error = null;
@@ -20,7 +21,7 @@ class MachinePlayer extends Player {
 
 	@Override
 	void move() {
-		TicTacToeCoordinate originCoordinate = new TicTacToeCoordinate();
+		Coordinate originCoordinate = new Coordinate();
 		Error error;
 		do {
 			error = null;
@@ -29,7 +30,7 @@ class MachinePlayer extends Player {
 				error = Error.NOT_OWNER;
 			}
 		} while (error != null);
-		TicTacToeCoordinate targetCoordinate = new TicTacToeCoordinate();
+		Coordinate targetCoordinate = new Coordinate();
 		do {
 			error = null;
 			targetCoordinate.random();

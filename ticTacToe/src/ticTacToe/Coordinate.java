@@ -1,22 +1,26 @@
+package ticTacToe;
+
 import java.util.Random;
 
-class TicTacToeCoordinate extends Coordinate {
+import santaTecla.utils.Direction;
+
+class Coordinate extends santaTecla.utils.Coordinate {
 
 	static final int DIMENSION = 3;
 
-	TicTacToeCoordinate() {
+	Coordinate() {
 		super();
 	}
 
-	TicTacToeCoordinate(int row, int column) {
+	Coordinate(int row, int column) {
 		super(row, column);
 	}
 
-	boolean inDirection(TicTacToeCoordinate coordinate) {
+	boolean inDirection(Coordinate coordinate) {
 		return this.getDirection(coordinate) != null;
 	}
 
-	Direction getDirection(TicTacToeCoordinate coordinate) {
+	Direction getDirection(Coordinate coordinate) {
 		Direction direction = super.getDirection(coordinate);
 		if (direction != null) {
 			return direction;
@@ -28,15 +32,15 @@ class TicTacToeCoordinate extends Coordinate {
 	}
 
 	private boolean inInverseDiagonal() {
-		return this.row + this.column == TicTacToeCoordinate.DIMENSION - 1;
+		return this.row + this.column == Coordinate.DIMENSION - 1;
 	}
 
 	private boolean isValid() {
-		return this.row >= 0 && this.row < TicTacToeCoordinate.DIMENSION && this.column >= 0
-				&& this.column < TicTacToeCoordinate.DIMENSION;
+		return this.row >= 0 && this.row < Coordinate.DIMENSION && this.column >= 0
+				&& this.column < Coordinate.DIMENSION;
 	}
 
-	void read(String title) {
+	 protected void read(String title) {
 		do {
 			super.read(title);
 		} while (!this.isValid());
@@ -44,8 +48,8 @@ class TicTacToeCoordinate extends Coordinate {
 
 	void random() {
 		Random random = new Random(System.currentTimeMillis());
-		this.row = random.nextInt(TicTacToeCoordinate.DIMENSION);
-		this.column = random.nextInt(TicTacToeCoordinate.DIMENSION);
+		this.row = random.nextInt(Coordinate.DIMENSION);
+		this.column = random.nextInt(Coordinate.DIMENSION);
 	}
 
 }

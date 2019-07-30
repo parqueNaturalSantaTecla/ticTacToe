@@ -1,3 +1,6 @@
+package ticTacToe;
+import santaTecla.utils.Console;
+
 enum Error {
 
 	NOT_EMPTY("The square is not empty"),

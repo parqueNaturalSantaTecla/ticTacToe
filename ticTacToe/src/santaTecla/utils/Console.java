@@ -1,11 +1,13 @@
+package santaTecla.utils;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-class Console {
+public class Console {
 
 	private BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
-	String readString(String title) {
+	public String readString(String title) {
 		String input = null;
 		boolean ok = false;
 		do {
@@ -20,11 +22,11 @@ class Console {
 		return input;
 	}
 
-	String readString() {
+	public String readString() {
 		return this.readString("");
 	}
 
-	int readInt(String title) {
+	public int readInt(String title) {
 		int input = 0;
 		boolean ok = false;
 		do {
@@ -38,7 +40,7 @@ class Console {
 		return input;
 	}
 
-	char readChar(String title) {
+	public char readChar(String title) {
 		char charValue = ' ';
 		boolean ok = false;
 		do {
@@ -53,31 +55,31 @@ class Console {
 		return charValue;
 	}
 
-	void writeln() {
+	public void writeln() {
 		System.out.println();
 	}
 
-	void write(String string) {
+	public void write(String string) {
 		System.out.print(string);
 	}
 
-	void write(int integer) {
+	public void write(int integer) {
 		System.out.print(integer);
 	}
 
-	void writeln(String string) {
+	public void writeln(String string) {
 		System.out.println(string);
 	}
 
-	void writeln(int integer) {
+	public void writeln(int integer) {
 		System.out.println(integer);
 	}
 
-	void write(char character) {
+	public void write(char character) {
 		System.out.print(character);
 	}
 
-	void writeError(String format) {
+	public void writeError(String format) {
 		System.out.println("FORMAT ERROR! " + "Enter a " + format + " formatted value.");
 	}
 

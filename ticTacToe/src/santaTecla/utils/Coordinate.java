@@ -1,18 +1,20 @@
-class Coordinate extends WithConsoleModel {
+package santaTecla.utils;
+
+public class Coordinate extends WithConsoleModel {
 
 	protected int row;
 
 	protected int column;
 
-	Coordinate() {
+	protected Coordinate() {
 	}
 
-	Coordinate(int row, int column) {
+	protected Coordinate(int row, int column) {
 		this.row = row;
 		this.column = column;
 	}
 
-	Direction getDirection(Coordinate coordinate) {
+	protected Direction getDirection(Coordinate coordinate) {
 		if (this.inHorizontal(coordinate)) {
 			return Direction.HORIZONTAL;
 		}
@@ -37,22 +39,18 @@ class Coordinate extends WithConsoleModel {
 		return this.row == coordinate.row;
 	}
 
-	void read(String title) {
+	protected void read(String title) {
 		WithConsoleModel.console.writeln(title);
 		this.row = WithConsoleModel.console.readInt("Row: ") - 1;
 		this.column = WithConsoleModel.console.readInt("Column: ") - 1;
 	}
 
-	int getRow() {
+	public int getRow() {
 		return this.row;
 	}
 
-	int getColumn() {
+	public int getColumn() {
 		return this.column;
-	}
-
-	boolean equals(Coordinate coordinate) {
-		return this.column == coordinate.column && this.row == coordinate.row;
 	}
 
 }
