@@ -1,5 +1,7 @@
 class TicTacToeCoordinate extends Coordinate {
 
+	static final int DIMENSION = 3;
+
 	TicTacToeCoordinate() {
 		super();
 	}
@@ -20,11 +22,12 @@ class TicTacToeCoordinate extends Coordinate {
 	}
 
 	private boolean inInverseDiagonal() {
-		return this.row + this.column == Board.DIMENSION - 1;
+		return this.row + this.column == TicTacToeCoordinate.DIMENSION - 1;
 	}
 
 	private boolean isValid() {
-		return this.row >= 0 && this.row < Board.DIMENSION && this.column >= 0 && this.column < Board.DIMENSION;
+		return this.row >= 0 && this.row < TicTacToeCoordinate.DIMENSION && this.column >= 0
+				&& this.column < TicTacToeCoordinate.DIMENSION;
 	}
 
 	void read(String title) {
