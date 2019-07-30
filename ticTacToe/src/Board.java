@@ -1,15 +1,13 @@
-class Board extends WithConsoleModel{
-
-	static final int DIMENSION = 3;
+class Board extends WithConsoleModel {
 
 	static final char EMPTY = '-';
 
 	private Coordinate[][] coordinates;
 
 	Board() {
-		this.coordinates = new Coordinate[Turn.PLAYERS][Board.DIMENSION];
+		this.coordinates = new Coordinate[Turn.PLAYERS][Coordinate.DIMENSION];
 		for (int i = 0; i < Turn.PLAYERS; i++) {
-			for (int j = 0; j < Board.DIMENSION; j++) {
+			for (int j = 0; j < Coordinate.DIMENSION; j++) {
 				this.coordinates[i][j] = null;
 			}
 		}
@@ -17,9 +15,9 @@ class Board extends WithConsoleModel{
 
 	void write() {
 		WithConsoleModel.console.writeln("-----------------------------------------------------");
-		for (int i = 0; i < Board.DIMENSION; i++) {
+		for (int i = 0; i < Coordinate.DIMENSION; i++) {
 			WithConsoleModel.console.write("| ");
-			for (int j = 0; j < Board.DIMENSION; j++) {
+			for (int j = 0; j < Coordinate.DIMENSION; j++) {
 				if (this.getToken(new Coordinate(i, j)) == null) {
 					WithConsoleModel.console.write(Board.EMPTY);
 				} else {
@@ -34,7 +32,7 @@ class Board extends WithConsoleModel{
 
 	private Token getToken(Coordinate coordinate) {
 		for (int i = 0; i < Turn.PLAYERS; i++) {
-			for (int j = 0; j < Board.DIMENSION; j++) {
+			for (int j = 0; j < Coordinate.DIMENSION; j++) {
 				if (this.coordinates[i][j] != null && this.coordinates[i][j].getRow() == coordinate.getRow()
 						&& this.coordinates[i][j].getColumn() == coordinate.getColumn()) {
 					return Token.values()[i];
@@ -60,7 +58,7 @@ class Board extends WithConsoleModel{
 
 	private void remove(Coordinate coordinate) {
 		for (int i = 0; i < Turn.PLAYERS; i++) {
-			for (int j = 0; j < Board.DIMENSION; j++) {
+			for (int j = 0; j < Coordinate.DIMENSION; j++) {
 				if (this.coordinates[i][j] != null && this.coordinates[i][j].getRow() == coordinate.getRow()
 						&& this.coordinates[i][j].getColumn() == coordinate.getColumn()) {
 					this.coordinates[i][j] = null;
@@ -71,7 +69,7 @@ class Board extends WithConsoleModel{
 
 	boolean isTicTacToe(Token token) {
 		Coordinate[] coordinates = this.coordinates[token.ordinal()];
-		if (this.numberOfCoordinates(coordinates) < Board.DIMENSION) {
+		if (this.numberOfCoordinates(coordinates) < Coordinate.DIMENSION) {
 			return false;
 		}
 		if (!coordinates[0].inDirection(coordinates[1])) {
@@ -98,7 +96,7 @@ class Board extends WithConsoleModel{
 
 	boolean isCompleted() {
 		for (int i = 0; i < Turn.PLAYERS; i++) {
-			for (int j = 0; j < Board.DIMENSION; j++) {
+			for (int j = 0; j < Coordinate.DIMENSION; j++) {
 				if (this.coordinates[i][j] == null) {
 					return false;
 				}
