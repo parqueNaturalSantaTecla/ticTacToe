@@ -17,8 +17,6 @@ class TicTacToeCoordinate extends Coordinate {
 	}
 
 	Direction getDirection(TicTacToeCoordinate coordinate) {
-		System.out.println("this: "+ row + " " + column);
-		System.out.println("coordinate: "+ coordinate.row + " " + coordinate.column);
 		Direction direction = super.getDirection(coordinate);
 		if (direction != null) {
 			return direction;
