@@ -1,5 +1,7 @@
 class Coordinate {
 
+	static final int DIMENSION = 3;
+
 	private int row;
 
 	private int column;
@@ -29,7 +31,7 @@ class Coordinate {
 	}
 
 	private boolean inInverseDiagonal() {
-		return this.row + this.column == Board.DIMENSION - 1;
+		return this.row + this.column == Coordinate.DIMENSION - 1;
 	}
 
 	private boolean inMainDiagonal() {
@@ -54,7 +56,8 @@ class Coordinate {
 	}
 
 	private boolean isValid() {
-		return this.row >= 0 && this.row < Board.DIMENSION && this.column >= 0 && this.column < Board.DIMENSION;
+		return this.row >= 0 && this.row < Coordinate.DIMENSION && this.column >= 0
+				&& this.column < Coordinate.DIMENSION;
 	}
 
 	int getRow() {
