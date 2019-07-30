@@ -10,6 +10,10 @@ class TicTacToeCoordinate extends Coordinate {
 		super(row, column);
 	}
 
+	boolean inDirection(TicTacToeCoordinate coordinate) {
+		return this.getDirection(coordinate) != null;
+	}
+
 	Direction getDirection(TicTacToeCoordinate coordinate) {
 		Direction direction = super.getDirection(coordinate);
 		if (direction != null) {
