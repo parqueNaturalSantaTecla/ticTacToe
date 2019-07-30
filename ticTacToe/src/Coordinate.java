@@ -51,10 +51,6 @@ class Coordinate extends WithConsoleModel {
 		return this.column;
 	}
 
-	boolean inDirection(Coordinate coordinate) {
-		return this.getDirection(coordinate) != null;
-	}
-
 	boolean equals(Coordinate coordinate) {
 		return this.column == coordinate.column && this.row == coordinate.row;
 	}

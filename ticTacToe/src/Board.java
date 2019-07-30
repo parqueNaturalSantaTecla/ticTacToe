@@ -73,6 +73,7 @@ class Board extends WithConsoleModel {
 			return false;
 		}
 		if (!coordinates[0].inDirection(coordinates[1])) {
+			System.out.println("No están en dirección");
 			return false;
 		}
 		Direction direction = coordinates[0].getDirection(coordinates[1]);
