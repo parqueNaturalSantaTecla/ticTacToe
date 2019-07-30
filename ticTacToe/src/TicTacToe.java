@@ -1,4 +1,4 @@
-class TicTacToe {
+class TicTacToe extends WithConsoleModel{
 
 	private Board board;
 
@@ -16,8 +16,7 @@ class TicTacToe {
 	}
 
 	private void play() {
-		Console console = new Console();
-		console.writeln("-------------------- TIC TAC TOE --------------------");
+		WithConsoleModel.console.writeln("-------------------- TIC TAC TOE --------------------");
 		this.board.write();
 		do {
 			if (!this.board.isCompleted()) {

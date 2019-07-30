@@ -1,4 +1,4 @@
-class Board {
+class Board extends WithConsoleModel{
 
 	static final int DIMENSION = 3;
 
@@ -16,21 +16,20 @@ class Board {
 	}
 
 	void write() {
-		Console console = new Console();
-		console.writeln("-----------------------------------------------------");
+		WithConsoleModel.console.writeln("-----------------------------------------------------");
 		for (int i = 0; i < Board.DIMENSION; i++) {
-			console.write("| ");
+			WithConsoleModel.console.write("| ");
 			for (int j = 0; j < Board.DIMENSION; j++) {
 				if (this.getToken(new Coordinate(i, j)) == null) {
-					console.write(Board.EMPTY);
+					WithConsoleModel.console.write(Board.EMPTY);
 				} else {
 					this.getToken(new Coordinate(i, j)).write();
 				}
-				console.write(" | ");
+				WithConsoleModel.console.write(" | ");
 			}
-			console.writeln();
+			WithConsoleModel.console.writeln();
 		}
-		console.writeln("-----------------------------------------------------");
+		WithConsoleModel.console.writeln("-----------------------------------------------------");
 	}
 
 	private Token getToken(Coordinate coordinate) {

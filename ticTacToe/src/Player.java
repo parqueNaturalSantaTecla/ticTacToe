@@ -1,4 +1,4 @@
-class Player {
+class Player extends WithConsoleModel{
 
 	private Token token;
 	
@@ -51,7 +51,7 @@ class Player {
 
 	void writeWin(Token token) {
 		token.write();
-		new Console().writeln(" Player: You win!!! :-)");
+		WithConsoleModel.console.writeln(" Player: You win!!! :-)");
 	}
 
 	Token getToken() {
