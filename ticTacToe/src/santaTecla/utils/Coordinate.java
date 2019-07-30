@@ -53,4 +53,8 @@ public class Coordinate extends WithConsoleModel {
 		return this.column;
 	}
 
+	public boolean equals(Coordinate coordinate) {
+		return this.column == coordinate.column && this.row == coordinate.row;
+	}
+
 }
