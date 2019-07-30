@@ -1,8 +1,8 @@
-class Coordinate extends WithConsoleModel{
+class Coordinate extends WithConsoleModel {
 
-	private int row;
+	protected int row;
 
-	private int column;
+	protected int column;
 
 	Coordinate() {
 	}
@@ -22,14 +22,7 @@ class Coordinate extends WithConsoleModel{
 		if (this.inMainDiagonal() && coordinate.inMainDiagonal()) {
 			return Direction.MAIN_DIAGONAL;
 		}
-		if (this.inInverseDiagonal() && coordinate.inInverseDiagonal()) {
-			return Direction.INVERSE_DIAGONAL;
-		}
 		return null;
-	}
-
-	private boolean inInverseDiagonal() {
-		return this.row + this.column == Board.DIMENSION - 1;
 	}
 
 	private boolean inMainDiagonal() {
@@ -45,15 +38,9 @@ class Coordinate extends WithConsoleModel{
 	}
 
 	void read(String title) {
-		do {
-			WithConsoleModel.console.writeln(title);
-			this.row = WithConsoleModel.console.readInt("Row: ") - 1;
-			this.column = WithConsoleModel.console.readInt("Column: ") - 1;
-		} while (!this.isValid());
-	}
-
-	private boolean isValid() {
-		return this.row >= 0 && this.row < Board.DIMENSION && this.column >= 0 && this.column < Board.DIMENSION;
+		WithConsoleModel.console.writeln(title);
+		this.row = WithConsoleModel.console.readInt("Row: ") - 1;
+		this.column = WithConsoleModel.console.readInt("Column: ") - 1;
 	}
 
 	int getRow() {
